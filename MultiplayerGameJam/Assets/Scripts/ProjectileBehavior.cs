@@ -6,6 +6,7 @@ public class ProjectileBehavior : MonoBehaviour
 {
     public float speed = 4f;
     public Vector3 direction = new Vector3(1f, 0f, 0f);
+    public GameObject shooter;
 
     void Update()
     {
@@ -14,8 +15,13 @@ public class ProjectileBehavior : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) 
     { 
-        if (other.gameObject.tag != "Player") 
+        if (other.gameObject != shooter) 
         {
+            if (other.gameObject.tag == "Player") {
+                Health health = other.gameObject.GetComponent<Health>();
+                health.TakeDamage(10f);
+            }
+            
             Destroy(gameObject);
         }
     }

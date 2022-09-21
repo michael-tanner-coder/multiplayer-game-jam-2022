@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     public float maxHP;
     public Image healthbar;
 
-    void TakeDamage(float damage) 
+    public void TakeDamage(float damage) 
     {
         hp -= damage;
         if (hp <= 0) 
@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    void RecoverHealth(float recoverAmount) 
+    public void RecoverHealth(float recoverAmount) 
     {
         hp += recoverAmount;
         if (hp > maxHP) 

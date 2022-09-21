@@ -9,7 +9,7 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-      var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+      var move = new Vector3(Input.GetAxis("Horizontal" + gameObject.name), Input.GetAxis("Vertical" + gameObject.name), 0);
       transform.position += move * speed * Time.deltaTime;
     }
 }
