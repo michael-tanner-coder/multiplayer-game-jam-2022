@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874aa177c14767542a23aee70a9e18d4, type: 3}
   m_Name: MachineGun
   m_EditorClassIdentifier: 
-  name: 
-  type: 0
+  name: Machine Gun
+  type: 1
