@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
     public static GameManager gm { get; private set; }
     public float timer = 1000f;
     public int robotsLeft = 0;
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
             var robots = GameObject.FindGameObjectsWithTag("Player");
             Debug.Log("WINNER!");
             Debug.Log(robots[0]);
+            SceneManager.LoadScene("VictoryScreen");
         }
     }
 }
