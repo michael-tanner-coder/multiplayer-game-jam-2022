@@ -10,7 +10,6 @@ public class EventManager : MonoBehaviour
     private void Awake() 
     {
         current = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     public event Action onRobotSpawn;
