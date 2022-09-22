@@ -29,6 +29,7 @@ public class WeaponController : MonoBehaviour
             GameObject newBullet = Instantiate(bullet, gameObject.transform.position, transform.rotation);
             newBullet.GetComponent<ProjectileBehavior>().direction = firingDirection;
             newBullet.GetComponent<ProjectileBehavior>().shooter = gameObject;
+            Physics2D.IgnoreCollision(newBullet.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
         }
     }
 }

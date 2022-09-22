@@ -128,7 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   maxHP: 100
-  healthbar: {fileID: 0}
+  healthbar: {fileID: 147951312460857696, guid: bcc83bf20d53db6418c8eb7f3baffb06, type: 3}
+  healthbarImage: {fileID: 147951312460857758, guid: bcc83bf20d53db6418c8eb7f3baffb06, type: 3}
 --- !u!114 &5423347953747463109
 MonoBehaviour:
   m_ObjectHideFlags: 0

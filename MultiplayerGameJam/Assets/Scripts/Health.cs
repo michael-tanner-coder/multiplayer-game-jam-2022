@@ -7,7 +7,16 @@ public class Health : MonoBehaviour
 {
     public float hp;
     public float maxHP;
-    public Image healthbar;
+    public GameObject healthbar;
+    private GameObject canvas;
+    private GameObject hpBar;
+
+    public void Start() 
+    {
+        GameObject canvas = GameObject.Find("WorldCanvas");
+        hpBar = Instantiate(healthbar);
+        hpBar.transform.parent = canvas.GetComponent<Transform>();
+    }
 
     public void TakeDamage(float damage) 
     {
@@ -29,9 +38,11 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        Transform healthbarTransform = healthbar.GetComponent<Transform>();
+        Image healthbarImage = hpBar.GetComponent<Image>();
+        Transform healthbarTransform = healthbarImage.GetComponent<Transform>();
         healthbarTransform.position = gameObject.transform.position;
-        healthbar.fillAmount = hp / maxHP;
+        healthbarTransform.position = new Vector3(healthbarTransform.position.x, healthbarTransform.position.y + 1.2f, healthbarTransform.position.z);
+        healthbarImage.fillAmount = hp / maxHP;
 
         if (hp <= 0) 
         {

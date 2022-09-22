@@ -43,7 +43,7 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionProfiler.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionStats\FusionStatsBillboard.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\ToggleRunnerVisibility.cs" />
-     <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionStats\FusionStatsMeterBar.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionPhotonClientSocket.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\InputBehaviourPrototype.cs" />
@@ -72,10 +72,10 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\NetworkSceneManagerBase.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\NetworkCharacterControllerPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\SpawnPoints\ISpawnPointPrototype.cs" />
-     <Compile Include="Assets\RobotController.cs" />
+     <Compile Include="Assets\Scripts\RobotController.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\SpawnPoints\SpawnPointManagerPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\SpawnPoints\ISpawnPointManagerPrototypeT.cs" />
-     <Compile Include="Assets\EventManager.cs" />
+     <Compile Include="Assets\Scripts\EventManager.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionRuntimeCheck.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Materials\FusionPrototypeMaterials.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Assistants\FusionAssistants.cs" />
@@ -90,8 +90,8 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\SpawnPoints\PlayerSpawnPointManagerPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\ControllerPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionGraph.cs" />
-     <Compile Include="Assets\MenuManager.cs" />
-     <Compile Include="Assets\ManagerContainer.cs" />
+     <Compile Include="Assets\Scripts\MenuManager.cs" />
+     <Compile Include="Assets\Scripts\ManagerContainer.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
