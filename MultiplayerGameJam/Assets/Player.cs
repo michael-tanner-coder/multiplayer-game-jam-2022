@@ -1,5 +1,6 @@
 using Fusion;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : NetworkBehaviour
 {
@@ -26,6 +27,19 @@ public class Player : NetworkBehaviour
     }
   }
 
+  private Text _messages;
+  [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+  public void RPC_SendMessage(string message, RpcInfo info = default)
+  {
+    if (_messages == null)
+      _messages = FindObjectOfType<Text>();
+    if(info.IsInvokeLocal)
+      message = $"You said: {message}\n";
+    else
+      message = $"Some other player said: {message}\n";
+    _messages.text += message;
+  }
+
   public override void Render()
   {
     renderer.color = Color.Lerp(renderer.color, Color.blue, Time.deltaTime );
@@ -40,6 +54,14 @@ public class Player : NetworkBehaviour
   {
     _cc = GetComponent<NetworkCharacterControllerPrototype>();
     _forward = transform.forward;
+  }
+
+  private void Update()
+  {
+    if (Object.HasInputAuthority && Input.GetKeyDown(KeyCode.R))
+    {
+      RPC_SendMessage("Wassup!");
+    }
   }
 
   public override void FixedUpdateNetwork()
