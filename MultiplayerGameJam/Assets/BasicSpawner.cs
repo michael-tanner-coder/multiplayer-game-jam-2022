@@ -11,6 +11,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     private NetworkRunner _runner;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+    private bool _mouseButton0;
+
+    private void Update()
+    {
+        _mouseButton0 = _mouseButton0 | Input.GetMouseButton(0);
+    }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) 
     {
@@ -22,7 +28,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             // Keep track of the player avatars so we can remove it when they disconnect
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
-     }
+    }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) 
     { 
@@ -38,17 +44,33 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     { 
         var data = new NetworkInputData();
 
-        if (Input.GetKey(KeyCode.W))
-            data.direction += Vector3.forward;
+        if (Input.GetKey(KeyCode.W)) 
+        {
+            data.direction += Vector3.up;
+            data.previousDirection = Vector3.up;
+        }
 
-        if (Input.GetKey(KeyCode.S))
-            data.direction += Vector3.back;
+        if (Input.GetKey(KeyCode.S)) 
+        {
+            data.direction += Vector3.down;
+            data.previousDirection = Vector3.down;
+        }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A)) 
+        {
             data.direction += Vector3.left;
+            data.previousDirection = Vector3.left;
+        }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D)) 
+        {
             data.direction += Vector3.right;
+            data.previousDirection = Vector3.right;
+        }
+
+        if (_mouseButton0)
+            data.buttons |= NetworkInputData.MOUSEBUTTON1;
+        _mouseButton0 = false;
 
         input.Set(data);
     }

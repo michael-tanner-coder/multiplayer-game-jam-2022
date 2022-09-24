@@ -52,6 +52,9 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Assistants\FusionSceneSetupAssistants.cs" />
      <Compile Include="Assets\Scripts\ManagerContainer.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Utilities\FusionPrototypingAssetUtils.cs" />
+     <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\BasicSpawner.cs" />
+     <Compile Include="Assets\Scripts\NetworkInputData.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\SpawnPoints\PlayerSpawnPointPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\AreaOfInterest\PlayerAOIPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Materials\FusionPrototypingTextures.cs" />
@@ -92,9 +95,7 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\SpawnPoints\PlayerSpawnPointManagerPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\ControllerPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionGraph.cs" />
-     <Compile Include="Assets\BasicSpawner.cs" />
-     <Compile Include="Assets\Scripts\NetworkInputData.cs" />
-     <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\Ball.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
