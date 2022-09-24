@@ -12,6 +12,30 @@ public class Player : NetworkBehaviour
   private Vector3 _forward;
   private Vector3 _prevDirection;
 
+  [Networked(OnChanged = nameof(OnBallSpawned))]
+  public NetworkBool spawned { get; set; }
+
+  private SpriteRenderer _renderer;
+  SpriteRenderer renderer
+  {
+    get
+    {
+      if(_renderer==null)
+        _renderer = GetComponentInChildren<SpriteRenderer>();
+      return _renderer;
+    }
+  }
+
+  public override void Render()
+  {
+    renderer.color = Color.Lerp(renderer.color, Color.blue, Time.deltaTime );
+  }
+
+  public static void OnBallSpawned(Changed<Player> changed)
+  {
+    changed.Behaviour.renderer.color = Color.white;
+  }
+
   private void Awake()
   {
     _cc = GetComponent<NetworkCharacterControllerPrototype>();
@@ -59,6 +83,7 @@ public class Player : NetworkBehaviour
           {
             o.GetComponent<PhysxBall>().Init( 10*_prevDirection );
           });
+          spawned = !spawned;
         }
       }
     }
