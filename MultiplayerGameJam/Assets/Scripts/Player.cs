@@ -6,12 +6,14 @@ public class Player : NetworkBehaviour
 {
   [SerializeField] private Ball _prefabBall;
   [SerializeField] private PhysxBall _prefabPhysxBall;
+  [SerializeField] private float speed = 50f;
 
   [Networked] private TickTimer delay { get; set; }
 
   private NetworkCharacterControllerPrototype _cc;
   private Vector3 _forward;
   private Vector3 _prevDirection;
+  [SerializeField] private Rigidbody2D _rb;
 
   [Networked(OnChanged = nameof(OnBallSpawned))]
   public NetworkBool spawned { get; set; }
@@ -69,7 +71,8 @@ public class Player : NetworkBehaviour
     if (GetInput(out NetworkInputData data))
     {
       data.direction.Normalize();
-      transform.position += 5 * data.direction * Runner.DeltaTime;
+      // transform.position += 5 * data.direction * Runner.DeltaTime;
+      _cc.Move(data.direction);
       
       if (!data.direction.Equals(Vector3.zero)) 
       {

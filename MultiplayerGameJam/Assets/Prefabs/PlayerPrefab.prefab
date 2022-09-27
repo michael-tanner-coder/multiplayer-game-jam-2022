@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1374504374255858972}
   - component: {fileID: 1374504374255858973}
   - component: {fileID: -6066348748694930396}
+  - component: {fileID: 6287181306945110703}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -108,9 +109,9 @@ MonoBehaviour:
     RotTeleportRadians: 1.5
   gravity: 0
   jumpImpulse: 8
-  acceleration: 10
+  acceleration: 19.18
   braking: 10
-  maxSpeed: 2
+  maxSpeed: 8
   rotationSpeed: 15
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
@@ -129,8 +130,25 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _prefabBall: {fileID: 2622100364472265909, guid: b90d79199ddb4fe46b742af3be00b0a0, type: 3}
   _prefabPhysxBall: {fileID: 4226091130130618018, guid: f3586252cfd58d04f8dd04fb6cef0eb0, type: 3}
+  speed: 50
+  _rb: {fileID: 4951972260865147192}
   _spawned:
     _value: 0
+--- !u!114 &6287181306945110703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374504374255858968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed5e305428e85a4c9f06a98fcb5cf33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  maxHP: 100
+  healthbar: {fileID: 147951312460857696, guid: bcc83bf20d53db6418c8eb7f3baffb06, type: 3}
 --- !u!1 &1374504374604757756
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1374504375175091096}
   - component: {fileID: 1374504375175091099}
+  - component: {fileID: 4951972260865147192}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -273,3 +292,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &4951972260865147192
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374504375175091097}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

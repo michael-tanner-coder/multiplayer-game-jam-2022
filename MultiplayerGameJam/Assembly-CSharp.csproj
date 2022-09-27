@@ -52,7 +52,7 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Assistants\FusionSceneSetupAssistants.cs" />
      <Compile Include="Assets\Scripts\ManagerContainer.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Utilities\FusionPrototypingAssetUtils.cs" />
-     <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\BasicSpawner.cs" />
      <Compile Include="Assets\Scripts\NetworkInputData.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\SpawnPoints\PlayerSpawnPointPrototype.cs" />
