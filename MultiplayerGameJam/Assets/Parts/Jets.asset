@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 874aa177c14767542a23aee70a9e18d4, type: 3}
-  m_Name: Wheels
+  m_Name: Jets
   m_EditorClassIdentifier: 
-  name: Wheels
+  name: Jets
   type: 0
-  acceleration: 5
-  braking: 2
-  maxSpeed: 5
-  boostPower: 0
-  boostRechargeTime: 0
+  acceleration: 4
+  braking: 5
+  maxSpeed: 4
+  boostPower: 8
+  boostRechargeTime: 10
   maxFlySpeed: 0
-  hasBoost: 0
+  hasBoost: 1
   canFly: 0
   fireRate: 0
   reloadTime: 0

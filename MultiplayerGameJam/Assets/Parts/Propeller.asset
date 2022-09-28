@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 874aa177c14767542a23aee70a9e18d4, type: 3}
-  m_Name: Wheels
+  m_Name: Propeller
   m_EditorClassIdentifier: 
-  name: Wheels
+  name: Propeller
   type: 0
-  acceleration: 5
-  braking: 2
-  maxSpeed: 5
+  acceleration: 4
+  braking: 3
+  maxSpeed: 4
   boostPower: 0
   boostRechargeTime: 0
-  maxFlySpeed: 0
+  maxFlySpeed: 3
   hasBoost: 0
-  canFly: 0
+  canFly: 1
   fireRate: 0
   reloadTime: 0
   recoil: 0
