@@ -15,16 +15,12 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxis("Horizontal" + gameObject.name) > 0) {firingDirection = new Vector3(1f, 0f, 0f);}
-        if (Input.GetAxis("Horizontal" + gameObject.name) < 0) {firingDirection = new Vector3(-1f, 0f, 0f);}
-        if (Input.GetAxis("Vertical" + gameObject.name) > 0) {firingDirection = new Vector3(0f, 1f, 0f);}
-        if (Input.GetAxis("Vertical" + gameObject.name) < 0) {firingDirection = new Vector3(0f, -1f, 0f);}
-        // if (Input.GetKeyDown("right"))  {   firingDirection = new Vector3(1f, 0f, 0f);  }
-        // if (Input.GetKeyDown("left"))   {   firingDirection = new Vector3(-1f, 0f, 0f); }
-        // if (Input.GetKeyDown("up"))     {   firingDirection = new Vector3(0f, 1f, 0f);  }
-        // if (Input.GetKeyDown("down"))   {   firingDirection = new Vector3(0f, -1f, 0f); }
-        
-        if (Input.GetButtonDown("Attack" + gameObject.name)) 
+        if (Input.GetAxis("Horizontal") > 0) {firingDirection = new Vector3(1f, 0f, 0f);}
+        if (Input.GetAxis("Horizontal") < 0) {firingDirection = new Vector3(-1f, 0f, 0f);}
+        if (Input.GetAxis("Vertical") > 0) {firingDirection = new Vector3(0f, 1f, 0f);}
+        if (Input.GetAxis("Vertical") < 0) {firingDirection = new Vector3(0f, -1f, 0f);}
+
+        if (Input.GetButtonDown("Attack")) 
         {
             GameObject newBullet = Instantiate(bullet, gameObject.transform.position, transform.rotation);
             newBullet.GetComponent<ProjectileBehavior>().direction = firingDirection;

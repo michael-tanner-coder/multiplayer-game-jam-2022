@@ -4,16 +4,15 @@ using UnityEngine.UI;
 
 public class Player : NetworkBehaviour
 {
+  [Header("Projectiles")]
   [SerializeField] private Ball _prefabBall;
-  [SerializeField] private PhysxBall _prefabPhysxBall;
-  [SerializeField] private float speed = 50f;
-
   [Networked] private TickTimer delay { get; set; }
 
+  [Header("Movement")]
+  private MovementController _mc;
   private NetworkCharacterControllerPrototype _cc;
   private Vector3 _forward;
   private Vector3 _prevDirection;
-  [SerializeField] private Rigidbody2D _rb;
 
   [Networked(OnChanged = nameof(OnBallSpawned))]
   public NetworkBool spawned { get; set; }
@@ -44,16 +43,16 @@ public class Player : NetworkBehaviour
 
   public override void Render()
   {
-    renderer.color = Color.Lerp(renderer.color, Color.blue, Time.deltaTime );
   }
 
   public static void OnBallSpawned(Changed<Player> changed)
   {
-    changed.Behaviour.renderer.color = Color.white;
+    // changed.Behaviour.renderer.color = Color.white;
   }
 
   private void Awake()
   {
+    _mc = GetComponent<MovementController>();
     _cc = GetComponent<NetworkCharacterControllerPrototype>();
     _forward = transform.forward;
   }
@@ -71,7 +70,6 @@ public class Player : NetworkBehaviour
     if (GetInput(out NetworkInputData data))
     {
       data.direction.Normalize();
-      // transform.position += 5 * data.direction * Runner.DeltaTime;
       _cc.Move(data.direction);
       
       if (!data.direction.Equals(Vector3.zero)) 
@@ -96,19 +94,6 @@ public class Player : NetworkBehaviour
             ball.Init();
             ball.SetDirection(_prevDirection);
           });
-        }
-        else if ((data.buttons & NetworkInputData.MOUSEBUTTON2) != 0)
-        {
-          delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
-          Runner.Spawn(_prefabPhysxBall,
-          transform.position,
-          Quaternion.identity,
-          Object.InputAuthority,
-          (runner, o) =>
-          {
-            o.GetComponent<PhysxBall>().Init( 10*_prevDirection );
-          });
-          spawned = !spawned;
         }
       }
     }
