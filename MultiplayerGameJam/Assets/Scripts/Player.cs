@@ -14,6 +14,9 @@ public class Player : NetworkBehaviour
   private Vector3 _forward;
   private Vector3 _prevDirection;
 
+  [Header("Parts")]
+  private PartSlots _parts;
+
   [Networked(OnChanged = nameof(OnBallSpawned))]
   public NetworkBool spawned { get; set; }
 
@@ -54,6 +57,7 @@ public class Player : NetworkBehaviour
   {
     _mc = GetComponent<MovementController>();
     _cc = GetComponent<NetworkCharacterControllerPrototype>();
+    _parts = GetComponent<PartSlots>();
     _forward = transform.forward;
   }
 
@@ -70,6 +74,12 @@ public class Player : NetworkBehaviour
     if (GetInput(out NetworkInputData data))
     {
       data.direction.Normalize();
+
+      if (_parts.mobilitySlot)
+      {
+        _cc.UpdateMovementProperties(_parts.mobilitySlot);
+      }
+
       _cc.Move(data.direction);
       
       if (!data.direction.Equals(Vector3.zero)) 

@@ -115,4 +115,11 @@ public class NetworkCharacterControllerPrototype : NetworkTransform {
     Velocity = (transform.position - previousPos) * Runner.Simulation.Config.TickRate;
     // IsGrounded = Controller.isGrounded;
   }
+
+  public void UpdateMovementProperties(PartScriptableObject part)
+  {
+    acceleration = part.acceleration;
+    braking = part.braking;
+    maxSpeed = part.maxSpeed;
+  }
 }

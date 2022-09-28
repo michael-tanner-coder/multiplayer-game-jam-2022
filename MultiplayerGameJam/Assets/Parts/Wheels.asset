@@ -16,7 +16,7 @@ MonoBehaviour:
   type: 0
   acceleration: 5
   braking: 2
-  maxSpeed: 5
+  maxSpeed: 8
   boostPower: 0
   boostRechargeTime: 0
   maxFlySpeed: 0

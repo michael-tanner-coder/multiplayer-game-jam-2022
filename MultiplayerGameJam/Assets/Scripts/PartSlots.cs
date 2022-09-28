@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PartSlots : MonoBehaviour
 {
-    [SerializeField]
-    private PartScriptableObject weaponSlot;
-
-    [SerializeField]
-    private PartScriptableObject mobilitySlot;
     
-    [SerializeField]
-    private PartScriptableObject targetingSlot;
+    [SerializeField] public PartScriptableObject weaponSlot;
+
+    
+    [SerializeField] public PartScriptableObject mobilitySlot;
+    
+    
+    [SerializeField] public PartScriptableObject targetingSlot;
 
     public void SetSlot(PartScriptableObject newPart)
     {
@@ -29,5 +29,25 @@ public class PartSlots : MonoBehaviour
         {
             targetingSlot = newPart;
         }
+    }
+
+    public PartScriptableObject GetSlot(PartType type)
+    {
+        if (type == PartType.WEAPON) 
+        {
+           return weaponSlot;
+        }
+
+        if (type == PartType.MOBILITY) 
+        {
+           return mobilitySlot;
+        }
+        
+        if (type == PartType.TARGETING) 
+        {
+           return targetingSlot;
+        }
+
+        return weaponSlot;
     }
 }
