@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSlot: {fileID: 0}
-  mobilitySlot: {fileID: 11400000, guid: 31c91af6755e94041a51b05afe6f6523, type: 2}
+  mobilitySlot: {fileID: 0}
   targetingSlot: {fileID: 0}
 --- !u!1 &1374504374604757756
 GameObject:

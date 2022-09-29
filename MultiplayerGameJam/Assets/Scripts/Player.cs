@@ -129,6 +129,8 @@ public class Player : NetworkBehaviour
       {
         if ((data.buttons & NetworkInputData.MOUSEBUTTON1) != 0)
         {
+          Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          Vector3 aimDirection = mousePosition - transform.position;
           delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
           Runner.Spawn(_prefabBall,
           transform.position, Quaternion.identity,
@@ -137,7 +139,7 @@ public class Player : NetworkBehaviour
             // Initialize the Ball before synchronizing it
             Ball ball = o.GetComponent<Ball>();
             ball.Init();
-            ball.SetDirection(_prevDirection);
+            ball.SetDirection(aimDirection);
           });
         }
       }
