@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Jets
   type: 0
-  acceleration: 4
+  acceleration: 6
   braking: 5
   maxSpeed: 4
-  boostPower: 8
-  boostRechargeTime: 10
+  boostPower: 16
+  boostRechargeTime: 5
   maxFlySpeed: 0
   hasBoost: 1
   canFly: 0

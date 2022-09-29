@@ -70,6 +70,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             data.previousDirection = Vector3.right;
         }
 
+        if (Input.GetButtonDown("Mobility"))
+        {
+            Debug.Log("Pressed Boost");
+            data.activatedMobilityPart = true;
+        }
+
         if (_mouseButton0)
             data.buttons |= NetworkInputData.MOUSEBUTTON1;
         _mouseButton0 = false;

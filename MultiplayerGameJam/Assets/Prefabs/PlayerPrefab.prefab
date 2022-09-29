@@ -119,7 +119,6 @@ MonoBehaviour:
   rotationSpeed: 15
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
-  tileManager: {fileID: 3441123128307922488, guid: 10e4a57c0aa550f44877bacfb960b6c5, type: 3}
 --- !u!114 &-6066348748694930396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSlot: {fileID: 0}
-  mobilitySlot: {fileID: 0}
+  mobilitySlot: {fileID: 11400000, guid: 31c91af6755e94041a51b05afe6f6523, type: 2}
   targetingSlot: {fileID: 0}
 --- !u!1 &1374504374604757756
 GameObject:

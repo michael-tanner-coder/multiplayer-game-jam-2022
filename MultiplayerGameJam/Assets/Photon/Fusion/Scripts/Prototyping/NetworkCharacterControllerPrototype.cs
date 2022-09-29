@@ -109,8 +109,14 @@ public class NetworkCharacterControllerPrototype : NetworkTransform {
     Tile currentTile = tileManager.GetTileData(transform.position);
 
     // friction will reduce acceleration but increase breaking
-    currentAcceleration -= currentTile.friction;
-    currentBraking += currentTile.friction;
+    if (currentTile.friction > 0) 
+    {
+      currentAcceleration -= currentTile.friction;
+    } 
+    else if (currentTile.friction < 0) 
+    {
+      currentBraking += currentTile.friction;
+    }
 
     // apply current acceleration and braking
     if (direction == default) {
@@ -128,6 +134,21 @@ public class NetworkCharacterControllerPrototype : NetworkTransform {
     Controller.Move(moveVelocity * deltaTime);
 
     Velocity = (transform.position - previousPos) * Runner.Simulation.Config.TickRate;
+
+    // check for gap tiles
+    if (IsGrounded && currentTile.isGap) 
+    {
+      // take damage
+      
+      // disappear
+
+      // respawn near hole
+      var celPosition = tileManager.GetMap().WorldToCell(transform.position);
+      celPosition.x -= 1;
+      celPosition.y -= 1;
+      transform.position = tileManager.GetMap().CellToWorld(celPosition);
+    }
+
     // IsGrounded = Controller.isGrounded;
   }
 

@@ -13,6 +13,8 @@ public class Player : NetworkBehaviour
   private NetworkCharacterControllerPrototype _cc;
   private Vector3 _forward;
   private Vector3 _prevDirection;
+  [Networked] private TickTimer boostChargeTime {get; set; }
+  [Networked] private TickTimer boostTime {get; set; }
 
   [Header("Parts")]
   private PartSlots _parts;
@@ -69,6 +71,35 @@ public class Player : NetworkBehaviour
     }
   }
 
+  private void CheckForBoost(NetworkInputData data)
+  {
+      // only activate the boost if the player has a part with this ability and if it has been recharged or unused
+      if (data.activatedMobilityPart && _parts.mobilitySlot && _parts.mobilitySlot.hasBoost && boostChargeTime.ExpiredOrNotRunning(Runner))  
+      {
+          boostChargeTime = TickTimer.CreateFromSeconds(Runner, _parts.mobilitySlot.boostRechargeTime + 0.5f);
+          boostTime = TickTimer.CreateFromSeconds(Runner, 0.5f);
+      }
+
+      // increase acceleration and top speed for duration of boost
+      if (boostTime.IsRunning)
+      {
+          _cc.acceleration += _parts.mobilitySlot.boostPower;
+          _cc.maxSpeed += _parts.mobilitySlot.boostPower;
+      }
+
+      // boost has finished
+      if(boostTime.Expired(Runner))
+      {
+        boostTime = TickTimer.None;
+      }
+   
+      // boost has recharged
+      if(boostChargeTime.Expired(Runner))
+      {
+        boostChargeTime = TickTimer.None;
+      }
+  }
+
   public override void FixedUpdateNetwork()
   {
     if (GetInput(out NetworkInputData data))
@@ -79,13 +110,17 @@ public class Player : NetworkBehaviour
       {
         _cc.UpdateMovementProperties(_parts.mobilitySlot);
       }
-
-      _cc.Move(data.direction);
       
       if (!data.direction.Equals(Vector3.zero)) 
       {
         _prevDirection = data.direction;
       }
+
+      // boost powerup
+      CheckForBoost(data);
+
+
+      _cc.Move(data.direction);
 
       if (data.direction.sqrMagnitude > 0)
         _forward = data.direction;

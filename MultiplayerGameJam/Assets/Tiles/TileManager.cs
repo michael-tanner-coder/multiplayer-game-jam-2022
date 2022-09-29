@@ -40,4 +40,9 @@ public class TileManager : MonoBehaviour
 
         return dataFromTiles[tile];
     }
+
+    public Tilemap GetMap() 
+    {
+        return map;
+    }
 }
