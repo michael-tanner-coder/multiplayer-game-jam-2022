@@ -23,6 +23,8 @@ public class NetworkCharacterControllerPrototype : NetworkTransform {
   [HideInInspector]
   public Vector3 Velocity { get; set; }
 
+  private TileManager tileManager;
+
   /// <summary>
   /// Sets the default teleport interpolation velocity to be the CC's current velocity.
   /// For more details on how this field is used, see <see cref="NetworkTransform.TeleportToPosition"/>.
@@ -39,6 +41,7 @@ public class NetworkCharacterControllerPrototype : NetworkTransform {
 
   protected override void Awake() {
     base.Awake();
+    tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
     CacheController();
   }
 
@@ -99,14 +102,26 @@ public class NetworkCharacterControllerPrototype : NetworkTransform {
     horizontalVel.x = moveVelocity.x;
     verticalVel.y = moveVelocity.y;
 
+    var currentBraking = braking;
+    var currentAcceleration = acceleration;
+
+    // check for terrain changes to acceleration and braking
+    Tile currentTile = tileManager.GetTileData(transform.position);
+
+    // friction will reduce acceleration but increase breaking
+    currentAcceleration -= currentTile.friction;
+    currentBraking += currentTile.friction;
+
+    // apply current acceleration and braking
     if (direction == default) {
-      horizontalVel = Vector3.Lerp(horizontalVel, default, braking * deltaTime);
-      verticalVel = Vector3.Lerp(verticalVel, default, braking * deltaTime);
+      horizontalVel = Vector3.Lerp(horizontalVel, default, currentBraking * deltaTime);
+      verticalVel = Vector3.Lerp(verticalVel, default, currentBraking * deltaTime);
     } else {
-      horizontalVel = Vector3.ClampMagnitude(horizontalVel + direction * acceleration * deltaTime, maxSpeed);
-      verticalVel = Vector3.ClampMagnitude(verticalVel + direction * acceleration * deltaTime, maxSpeed);
+      horizontalVel = Vector3.ClampMagnitude(horizontalVel + direction * currentAcceleration * deltaTime, maxSpeed);
+      verticalVel = Vector3.ClampMagnitude(verticalVel + direction * currentAcceleration * deltaTime, maxSpeed);
     }
 
+    // move the character to the new position based on movement properties 
     moveVelocity.x = horizontalVel.x;
     moveVelocity.y = verticalVel.y;
 

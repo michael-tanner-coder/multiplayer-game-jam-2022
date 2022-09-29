@@ -10,7 +10,6 @@ public class MovementController : NetworkBehaviour
     private float maxSpeed = 8.0f;
     private float mass = 1f;
     private float timeToMaxSpeed = 2;
-    private float braking = 10.0f;
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 acceleration = Vector3.zero;
