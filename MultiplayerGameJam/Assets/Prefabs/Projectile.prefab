@@ -9,14 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2622100364472265905}
-  - component: {fileID: 2622100364472265906}
+  - component: {fileID: 5231718878301401934}
+  - component: {fileID: -302092375340345791}
   - component: {fileID: 2622100364472265907}
   - component: {fileID: 2622100364472265908}
   - component: {fileID: 2622100364472265909}
   - component: {fileID: -2213593376855933023}
   m_Layer: 0
-  m_Name: Ball
-  m_TagString: Untagged
+  m_Name: Projectile
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +38,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2622100364472265906
+--- !u!50 &5231718878301401934
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622100364472265910}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &-302092375340345791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +68,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2622100364472265910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: -1779252708, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 2
@@ -85,7 +107,7 @@ MonoBehaviour:
     RawGuidValue: b90d79199ddb4fe46b742af3be00b0a0
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 2622100364472265906}
+  - {fileID: -302092375340345791}
   - {fileID: 2622100364472265909}
   SimulationBehaviours: []
 --- !u!58 &2622100364472265908
@@ -118,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _speed: 10
+  shooter: {fileID: 0}
 --- !u!96 &-2213593376855933023
 TrailRenderer:
   serializedVersion: 2

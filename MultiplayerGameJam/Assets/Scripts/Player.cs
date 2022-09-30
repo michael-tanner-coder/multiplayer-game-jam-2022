@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Player : NetworkBehaviour
 {
   [Header("Projectiles")]
-  [SerializeField] private Ball _prefabBall;
+  [SerializeField] private Projectile _prefabProjectile;
   [Networked] private TickTimer delay { get; set; }
 
   [Header("Movement")]
@@ -19,10 +19,12 @@ public class Player : NetworkBehaviour
   [Header("Parts")]
   private PartSlots _parts;
 
-  [Networked(OnChanged = nameof(OnBallSpawned))]
+  [Networked(OnChanged = nameof(OnProjectileSpawned))]
   public NetworkBool spawned { get; set; }
 
   private Health _health;
+
+  [SerializeField] private GameObject _collider;
 
   private SpriteRenderer _renderer;
   SpriteRenderer renderer
@@ -52,7 +54,7 @@ public class Player : NetworkBehaviour
   {
   }
 
-  public static void OnBallSpawned(Changed<Player> changed)
+  public static void OnProjectileSpawned(Changed<Player> changed)
   {
     // changed.Behaviour.renderer.color = Color.white;
   }
@@ -131,7 +133,7 @@ public class Player : NetworkBehaviour
       {
         if ((data.buttons & NetworkInputData.MOUSEBUTTON1) != 0)
         {
-          // get vector for ball based on current aiming direction
+          // get vector for projectile based on current aiming direction
           Vector3 mousePosition = Camera.main.ScreenToWorldPoint(data.mousePos);
           mousePosition.z = transform.position.z;
           Vector3 aimDirection = mousePosition - transform.position;
@@ -139,25 +141,19 @@ public class Player : NetworkBehaviour
           // start delay timer to prevent continous shooting
           delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
 
-          // spawn the ball with a normalized direction
-          Runner.Spawn(_prefabBall,
+          // spawn the projectile with a normalized direction
+          Runner.Spawn(_prefabProjectile,
           transform.position, Quaternion.identity,
           Object.InputAuthority, (runner, o) =>
           {
-            // Initialize the Ball before synchronizing it
-            Ball ball = o.GetComponent<Ball>();
-            ball.Init();
-            ball.SetDirection(aimDirection.normalized);
+            // Initialize the Projectile before synchronizing it
+            Projectile projectile = o.GetComponent<Projectile>();
+            projectile.shooter = _collider;
+            projectile.SetDirection(aimDirection.normalized);
+            projectile.Init();
           });
         }
       }
-    }
-  }
-
-  public void OnTriggerEnter2D(Collider2D other) {
-    if (other.gameObject.tag == "Projectile") {
-      Debug.Log("HIT");
-      _health.TakeDamage(5);
     }
   }
 }

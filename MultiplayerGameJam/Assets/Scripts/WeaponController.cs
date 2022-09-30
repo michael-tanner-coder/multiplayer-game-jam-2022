@@ -23,7 +23,7 @@ public class WeaponController : MonoBehaviour
         if (Input.GetButtonDown("Attack")) 
         {
             GameObject newBullet = Instantiate(bullet, gameObject.transform.position, transform.rotation);
-            newBullet.GetComponent<ProjectileBehavior>().shooter = gameObject;
+            newBullet.GetComponent<Projectile>().shooter = gameObject;
             Physics2D.IgnoreCollision(newBullet.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
         }
     }
