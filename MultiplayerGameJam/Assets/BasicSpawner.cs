@@ -76,14 +76,18 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             data.activatedMobilityPart = true;
         }
 
-        if (_mouseButton0)
+        if (_mouseButton0) {
             data.buttons |= NetworkInputData.MOUSEBUTTON1;
+            data.mousePos = Input.mousePosition;
+        }
         _mouseButton0 = false;
 
         if (_mouseButton1)
+        {
             data.buttons |= NetworkInputData.MOUSEBUTTON2;
+        }
         _mouseButton1 = false;
-
+        
         input.Set(data);
     }
     

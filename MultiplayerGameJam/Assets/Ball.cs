@@ -8,10 +8,12 @@ public class Ball : NetworkBehaviour
 {
   [Networked] private TickTimer life { get; set; }
   private Vector3 _direction { get; set; }
+  [SerializeField] private float _speed = 10f;
 
   public void SetDirection(Vector3 direction)
   {
-    _direction = direction;
+    _direction = direction.normalized;
+    Debug.Log("SetDirection: " + _direction);
   }
 
   public void Init()
@@ -27,7 +29,7 @@ public class Ball : NetworkBehaviour
     }
     else 
     {
-        transform.position += 5 * _direction * Runner.DeltaTime;
+        transform.position += _speed * _direction * Runner.DeltaTime;
     }
   }
 }

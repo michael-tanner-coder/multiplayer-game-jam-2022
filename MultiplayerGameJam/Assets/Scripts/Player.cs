@@ -22,6 +22,8 @@ public class Player : NetworkBehaviour
   [Networked(OnChanged = nameof(OnBallSpawned))]
   public NetworkBool spawned { get; set; }
 
+  private Health _health;
+
   private SpriteRenderer _renderer;
   SpriteRenderer renderer
   {
@@ -60,6 +62,7 @@ public class Player : NetworkBehaviour
     _mc = GetComponent<MovementController>();
     _cc = GetComponent<NetworkCharacterControllerPrototype>();
     _parts = GetComponent<PartSlots>();
+    _health = GetComponent<Health>();
     _forward = transform.forward;
   }
 
@@ -119,7 +122,6 @@ public class Player : NetworkBehaviour
       // boost powerup
       CheckForBoost(data);
 
-
       _cc.Move(data.direction);
 
       if (data.direction.sqrMagnitude > 0)
@@ -129,9 +131,15 @@ public class Player : NetworkBehaviour
       {
         if ((data.buttons & NetworkInputData.MOUSEBUTTON1) != 0)
         {
-          Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          // get vector for ball based on current aiming direction
+          Vector3 mousePosition = Camera.main.ScreenToWorldPoint(data.mousePos);
+          mousePosition.z = transform.position.z;
           Vector3 aimDirection = mousePosition - transform.position;
+
+          // start delay timer to prevent continous shooting
           delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
+
+          // spawn the ball with a normalized direction
           Runner.Spawn(_prefabBall,
           transform.position, Quaternion.identity,
           Object.InputAuthority, (runner, o) =>
@@ -139,10 +147,17 @@ public class Player : NetworkBehaviour
             // Initialize the Ball before synchronizing it
             Ball ball = o.GetComponent<Ball>();
             ball.Init();
-            ball.SetDirection(aimDirection);
+            ball.SetDirection(aimDirection.normalized);
           });
         }
       }
+    }
+  }
+
+  public void OnTriggerEnter2D(Collider2D other) {
+    if (other.gameObject.tag == "Projectile") {
+      Debug.Log("HIT");
+      _health.TakeDamage(5);
     }
   }
 }

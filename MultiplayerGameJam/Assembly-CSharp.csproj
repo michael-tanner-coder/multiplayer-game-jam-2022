@@ -93,13 +93,13 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\NetworkSceneManagerDefault.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\NetworkDebugStart.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Utilities\FusionScalableIMGUI.cs" />
+     <Compile Include="Assets\Tiles\TileManager.cs" />
      <Compile Include="Assets\Scripts\MenuManager.cs" />
+     <Compile Include="Assets\Tiles\Tile.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\SpawnPoints\PlayerSpawnPointManagerPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\ControllerPrototype.cs" />
-     <Compile Include="Assets\Photon\Fusion\Scripts\FusionGraph.cs" />
-     <Compile Include="Assets\Tiles\Tile.cs" />
-     <Compile Include="Assets\Tiles\TileManager.cs" />
      <Compile Include="Assets\FollowMouse.cs" />
+     <Compile Include="Assets\Photon\Fusion\Scripts\FusionGraph.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
