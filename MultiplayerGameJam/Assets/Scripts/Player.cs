@@ -149,6 +149,7 @@ public class Player : NetworkBehaviour
             // Initialize the Projectile before synchronizing it
             Projectile projectile = o.GetComponent<Projectile>();
             projectile.shooter = _collider;
+            Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), _collider.GetComponent<Collider2D>(), true);
             projectile.SetDirection(aimDirection.normalized);
             projectile.Init();
           });

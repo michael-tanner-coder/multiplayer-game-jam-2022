@@ -123,6 +123,83 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &137546672
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 358.57843
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 170.59471
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.2758772
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551042, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410687752551052, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: m_Name
+      value: Managers
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182192938359982941, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: Menu Song
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182192938359982941, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182192938359982941, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182192938359982941, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182192938359982941, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
 --- !u!1001 &322796021
 PrefabInstance:
   m_ObjectHideFlags: 0

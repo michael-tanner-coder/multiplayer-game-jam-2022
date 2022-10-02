@@ -30,18 +30,30 @@ public class Projectile : NetworkBehaviour
     }
   }
 
-  void OnTriggerEnter2D(Collider2D other) 
-    { 
-        if (other.gameObject.GetInstanceID() != shooter.GetInstanceID()) 
-        {
-            GameObject parent = other.gameObject.transform.parent.gameObject;
-            if (parent.tag == "Player") 
-            {
-                Health health = parent.GetComponent<Health>();
-                health.TakeDamage(10f);
-            }
+  // void OnTriggerEnter2D(Collider2D other) 
+  //   { 
+  //       if (other.gameObject.GetInstanceID() != shooter.GetInstanceID()) 
+  //       {
+  //           GameObject parent = other.gameObject.transform.parent.gameObject;
+  //           if (parent.tag == "Player") 
+  //           {
+  //               Health health = parent.GetComponent<Health>();
+  //               health.TakeDamage(10f);
+  //           }
             
-            Destroy(gameObject);
-        }
+  //           Destroy(gameObject);
+  //       }
+  //   }
+
+  void OnCollisionEnter2D(Collision2D other) 
+    { 
+      GameObject parent = other.gameObject.transform.parent.gameObject;
+      if (parent.tag == "Player") 
+      {
+          Health health = parent.GetComponent<Health>();
+          health.TakeDamage(10f);
+      }
+      
+      Destroy(gameObject);
     }
 }
