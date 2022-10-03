@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Wheels
   type: 0
-  acceleration: 6
-  braking: 2
-  maxSpeed: 12
+  acceleration: 70
+  braking: 30
+  maxSpeed: 150
   boostPower: 0
   boostRechargeTime: 0
   maxFlySpeed: 0

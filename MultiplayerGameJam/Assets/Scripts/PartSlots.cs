@@ -6,10 +6,8 @@ public class PartSlots : MonoBehaviour
 {
     
     [SerializeField] public PartScriptableObject weaponSlot;
-
     
     [SerializeField] public PartScriptableObject mobilitySlot;
-    
     
     [SerializeField] public PartScriptableObject targetingSlot;
 

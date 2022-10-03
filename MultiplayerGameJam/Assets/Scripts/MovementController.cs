@@ -20,8 +20,10 @@ public class MovementController : MonoBehaviour {
   private TileManager tileManager;
 
   public CharacterController Controller { get; private set; }
+  private Rigidbody2D _rb;
 
   protected void Awake() {
+    _rb = GetComponent<Rigidbody2D>();
     tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
   }
 
@@ -79,7 +81,8 @@ public class MovementController : MonoBehaviour {
     moveVelocity.x = horizontalVel.x;
     moveVelocity.y = verticalVel.y;
 
-    transform.position += (moveVelocity * deltaTime);
+    // transform.position += (moveVelocity * deltaTime);
+    _rb.AddForce(moveVelocity);
 
     Velocity = (transform.position - previousPos); // may need to add deltaTime
 

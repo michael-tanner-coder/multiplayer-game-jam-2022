@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Propeller
   type: 0
-  acceleration: 4
-  braking: 3
-  maxSpeed: 4
+  acceleration: 50
+  braking: 60
+  maxSpeed: 100
   boostPower: 0
   boostRechargeTime: 0
   maxFlySpeed: 3

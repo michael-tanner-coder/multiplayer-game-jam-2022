@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Treads
   type: 0
-  acceleration: 3
-  braking: 3
-  maxSpeed: 3
+  acceleration: 45
+  braking: 200
+  maxSpeed: 100
   boostPower: 0
   boostRechargeTime: 0
   maxFlySpeed: 0
