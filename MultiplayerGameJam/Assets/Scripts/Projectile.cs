@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : NetworkBehaviour
+public class Projectile : MonoBehaviour
 {
-  [Networked] private TickTimer life { get; set; }
+  private Timer life = new Timer();
   private Vector3 _direction { get; set; }
   [SerializeField] private float _speed = 10f;
   public GameObject shooter;
@@ -18,37 +18,24 @@ public class Projectile : NetworkBehaviour
 
   public void Init()
   {
-    life = TickTimer.CreateFromSeconds(Runner, 5.0f);
+    life = Timer.CreateFromSeconds(5.0f);
     GetComponent<Rigidbody2D>().velocity = _direction * _speed;
   }
 
-  public override void FixedUpdateNetwork()
+  public void Update() 
   {
-    if (life.Expired(Runner))
+    life.Update();
+
+    if (life.Expired())
     {
-        Runner.Despawn(Object);
+        Destroy(gameObject);
     }
   }
-
-  // void OnTriggerEnter2D(Collider2D other) 
-  //   { 
-  //       if (other.gameObject.GetInstanceID() != shooter.GetInstanceID()) 
-  //       {
-  //           GameObject parent = other.gameObject.transform.parent.gameObject;
-  //           if (parent.tag == "Player") 
-  //           {
-  //               Health health = parent.GetComponent<Health>();
-  //               health.TakeDamage(10f);
-  //           }
-            
-  //           Destroy(gameObject);
-  //       }
-  //   }
 
   void OnCollisionEnter2D(Collision2D other) 
     { 
       GameObject parent = other.gameObject.transform.parent.gameObject;
-      if (parent.tag == "Player") 
+      if (parent.GetComponent<Health>() != null) 
       {
           Health health = parent.GetComponent<Health>();
           health.TakeDamage(10f);

@@ -1,68 +1,111 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 using Fusion;
+using UnityEngine;
 
-public class MovementController : NetworkBehaviour
-{
-    private float speed = 0f;
-    private float targetSpeed = 0f;
-    private float maxSpeed = 8.0f;
-    private float mass = 1f;
-    private float timeToMaxSpeed = 2;
+[RequireComponent(typeof(CharacterController))]
+[DisallowMultipleComponent]
+public class MovementController : MonoBehaviour {
+  [Header("Movement Controller Settings")]
+  public float acceleration  = 10.0f;
+  public float braking       = 10.0f;
+  public float maxSpeed      = 4.0f;
 
-    private Vector3 velocity = Vector3.zero;
-    private Vector3 acceleration = Vector3.zero;
-    private Vector3 deceleration = Vector3.zero;
-    private Vector3 movement = Vector3.zero; 
+  [Networked]
+  [HideInInspector]
+  public bool IsGrounded { get; set; }
 
-    public void Update()
+  [Networked]
+  [HideInInspector]
+  public Vector3 Velocity { get; set; }
+
+  private TileManager tileManager;
+
+  public CharacterController Controller { get; private set; }
+
+  protected void Awake() {
+    tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
+    CacheController();
+  }
+
+  private void CacheController() {
+    if (Controller == null) {
+      Controller = GetComponent<CharacterController>();
+
+      Assert.Check(Controller != null, $"An object with {nameof(MovementController)} must also have a {nameof(CharacterController)} component.");
+    }
+  }
+
+  /// <summary>
+  /// Basic implementation of a character controller's movement function based on an intended direction.
+  /// <param name="direction">Intended movement direction, subject to movement query, acceleration and max speed values.</param>
+  /// </summary>
+  public virtual void Move(Vector3 direction) {
+    var deltaTime    = Time.deltaTime;
+    var previousPos  = transform.position;
+    var moveVelocity = Velocity;
+
+    direction = direction.normalized;
+
+    var horizontalVel = default(Vector3);
+    var verticalVel = default(Vector3);
+
+    horizontalVel.x = moveVelocity.x;
+    verticalVel.y = moveVelocity.y;
+
+    var currentBraking = braking;
+    var currentAcceleration = acceleration;
+
+    // check for terrain changes to acceleration and braking
+    Tile currentTile = tileManager.GetTileData(transform.position);
+
+    // friction will reduce acceleration but increase breaking
+    if (currentTile.friction > 0) 
     {
-      float changeRatePerSecond = 1 / timeToMaxSpeed * Runner.DeltaTime;
-      targetSpeed = 0;
-
-      if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) 
-      {
-        targetSpeed = maxSpeed;
-      }
-
-      if (Input.GetKey(KeyCode.LeftShift))
-      {
-          // Reach destination value twice as fast
-          // when Shift is held down
-          changeRatePerSecond *= 2;
-      }
-
-      speed = Mathf.MoveTowards(speed, targetSpeed, changeRatePerSecond);
-
-      // * ----- *
-      // clamp speed to maximum limit
-      // if (speed < maxSpeed) 
-      // {
-      //   speed = maxSpeed;
-      // }
-
-      // // 
-      // velocity += acceleration;
-      // acceleration *= 0;
-
-      // movement = velocity * Runnder.DeltaTime;
-
-      // transform.position += velocity * Time.deltaTime;
+      currentAcceleration -= currentTile.friction;
+    } 
+    else if (currentTile.friction < 0) 
+    {
+      currentBraking += currentTile.friction;
     }
 
-    public void AddForce(Vector3 force)
-    {
-        Vector3 f = force;
-        f = f / mass;
-        
-        acceleration += f;
-
-        deceleration += f;
+    // apply current acceleration and braking
+    if (direction == default) {
+      horizontalVel = Vector3.Lerp(horizontalVel, default, currentBraking * deltaTime);
+      verticalVel = Vector3.Lerp(verticalVel, default, currentBraking * deltaTime);
+    } else {
+      horizontalVel = Vector3.ClampMagnitude(horizontalVel + direction * currentAcceleration * deltaTime, maxSpeed);
+      verticalVel = Vector3.ClampMagnitude(verticalVel + direction * currentAcceleration * deltaTime, maxSpeed);
     }
 
-    public void Move(Vector3 direction, float dt) 
+    // move the character to the new position based on movement properties 
+    moveVelocity.x = horizontalVel.x;
+    moveVelocity.y = verticalVel.y;
+
+    Controller.Move(moveVelocity * deltaTime);
+
+    Velocity = (transform.position - previousPos); // may need to add deltaTime
+
+    // check for gap tiles
+    if (IsGrounded && currentTile.isGap) 
     {
-      transform.position += direction * speed * dt;
+      // take damage
+      
+      // disappear
+
+      // respawn near hole
+      var celPosition = tileManager.GetMap().WorldToCell(transform.position);
+      celPosition.x -= 1;
+      celPosition.y -= 1;
+      transform.position = tileManager.GetMap().CellToWorld(celPosition);
     }
+
+    // IsGrounded = Controller.isGrounded;
+  }
+
+  public void UpdateMovementProperties(PartScriptableObject part)
+  {
+    acceleration = part.acceleration;
+    braking = part.braking;
+    maxSpeed = part.maxSpeed;
+  }
 }

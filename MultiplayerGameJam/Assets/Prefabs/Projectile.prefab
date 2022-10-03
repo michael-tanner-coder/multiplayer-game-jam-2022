@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2622100364472265905}
   - component: {fileID: 5231718878301401934}
-  - component: {fileID: -302092375340345791}
-  - component: {fileID: 2622100364472265907}
   - component: {fileID: 2622100364472265908}
   - component: {fileID: 2622100364472265909}
   - component: {fileID: -2213593376855933023}
@@ -59,57 +57,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-302092375340345791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2622100364472265910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1779252708, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 2
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 2622100365147189046}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
---- !u!114 &2622100364472265907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2622100364472265910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 0
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2305
-  NetworkGuid:
-    RawGuidValue: b90d79199ddb4fe46b742af3be00b0a0
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: -302092375340345791}
-  - {fileID: 2622100364472265909}
-  SimulationBehaviours: []
 --- !u!58 &2622100364472265908
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbd7cdf5508c4e4b8766a92c99529fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
   _speed: 10
   shooter: {fileID: 0}
 --- !u!96 &-2213593376855933023

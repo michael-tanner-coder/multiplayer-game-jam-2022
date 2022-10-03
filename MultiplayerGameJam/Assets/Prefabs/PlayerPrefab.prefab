@@ -9,9 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1374504374255858970}
-  - component: {fileID: 1374504374255858971}
   - component: {fileID: 1374504374255858972}
-  - component: {fileID: 1374504374255858973}
   - component: {fileID: -6066348748694930396}
   - component: {fileID: 6287181306945110703}
   - component: {fileID: 5137692402333722637}
@@ -40,32 +38,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1374504374255858971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374504374255858968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 0
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2305
-  NetworkGuid:
-    RawGuidValue: 1eed39fe63868504a866da61c63ed0e4
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 1374504374255858973}
-  - {fileID: -6066348748694930396}
-  - {fileID: 5137692402333722637}
-  SimulationBehaviours: []
 --- !u!143 &1374504374255858972
 CharacterController:
   m_ObjectHideFlags: 0
@@ -84,40 +56,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1374504374255858973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374504374255858968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 1374504374604757759}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  gravity: 0
-  jumpImpulse: 8
-  acceleration: 10
-  braking: 10
-  maxSpeed: 2
-  rotationSpeed: 15
-  _IsGrounded: 0
-  _Velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &-6066348748694930396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,10 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7770d9af31fc59040a287d6ff1a06609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
   _prefabProjectile: {fileID: 2622100364472265909, guid: b90d79199ddb4fe46b742af3be00b0a0, type: 3}
-  _spawned:
-    _value: 0
   _collider: {fileID: 1374504375175091097}
 --- !u!114 &6287181306945110703
 MonoBehaviour:
@@ -162,7 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1e5216824054746b2e5c88d4473b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
+  acceleration: 200
+  braking: 10
+  maxSpeed: 200
 --- !u!114 &830933218813755965
 MonoBehaviour:
   m_ObjectHideFlags: 0

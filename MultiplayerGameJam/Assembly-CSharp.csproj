@@ -49,6 +49,7 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\InputBehaviourPrototype.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionUnityLogger.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
+     <Compile Include="Assets\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Assistants\FusionSceneSetupAssistants.cs" />
      <Compile Include="Assets\Scripts\ManagerContainer.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Utilities\FusionPrototypingAssetUtils.cs" />
@@ -60,9 +61,11 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Materials\FusionPrototypingTextures.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionStats.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Utilities\FusionEditorUtilitiesExternal.cs" />
+     <Compile Include="Assets\Scripts\Sound.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionBurstIntegration.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\ToggleRunnerProvideInput.cs" />
      <Compile Include="Assets\Scripts\MovementController.cs" />
+     <Compile Include="Assets\Scripts\SoundHandler.cs" />
      <Compile Include="Assets\Scripts\PartBehavior.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\NetworkRunnerExtensions.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionStats\FusionStatsObjectIds.cs" />
@@ -100,9 +103,7 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\ControllerPrototype.cs" />
      <Compile Include="Assets\FollowMouse.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionGraph.cs" />
-     <Compile Include="Assets\Scripts\SoundManager.cs" />
-     <Compile Include="Assets\Scripts\Sound.cs" />
-     <Compile Include="Assets\Scripts\SoundHandler.cs" />
+     <Compile Include="Assets\Scripts\Timer.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
