@@ -34,10 +34,9 @@ public class Projectile : MonoBehaviour
 
   void OnCollisionEnter2D(Collision2D other) 
     { 
-      GameObject parent = other.gameObject.transform.parent.gameObject;
-      if (parent.GetComponent<Health>() != null) 
+      if (other.gameObject.GetComponent<Health>() != null) 
       {
-          Health health = parent.GetComponent<Health>();
+          Health health = other.gameObject.GetComponent<Health>();
           health.TakeDamage(10f);
       }
       

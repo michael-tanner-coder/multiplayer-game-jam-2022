@@ -13,21 +13,38 @@ public class PartSlots : MonoBehaviour
     
     [SerializeField] public PartScriptableObject targetingSlot;
 
+    [SerializeField] private GameObject _partPrefab;
+
     public void SetSlot(PartScriptableObject newPart)
     {
         if (newPart.type == PartType.WEAPON) 
         {
+            SwapPart(weaponSlot);
             weaponSlot = newPart;
         }
 
         if (newPart.type == PartType.MOBILITY) 
         {
+            SwapPart(mobilitySlot);
             mobilitySlot = newPart;
         }
         
         if (newPart.type == PartType.TARGETING) 
         {
+            SwapPart(targetingSlot);
             targetingSlot = newPart;
+        }
+    }
+
+    public void SwapPart(PartScriptableObject slot) 
+    {
+        if (slot != null) 
+        {
+            Vector3 newPosition = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+
+            GameObject swappedPart = Instantiate(_partPrefab, newPosition, Quaternion.identity);
+            PartBehavior swappedPartBehavior = swappedPart.GetComponent<PartBehavior>();
+            swappedPartBehavior.part = slot;
         }
     }
 

@@ -2,7 +2,6 @@ using System;
 using Fusion;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 [DisallowMultipleComponent]
 public class MovementController : MonoBehaviour {
   [Header("Movement Controller Settings")]
@@ -24,7 +23,6 @@ public class MovementController : MonoBehaviour {
 
   protected void Awake() {
     tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
-    CacheController();
   }
 
   private void CacheController() {
@@ -81,7 +79,7 @@ public class MovementController : MonoBehaviour {
     moveVelocity.x = horizontalVel.x;
     moveVelocity.y = verticalVel.y;
 
-    Controller.Move(moveVelocity * deltaTime);
+    transform.position += (moveVelocity * deltaTime);
 
     Velocity = (transform.position - previousPos); // may need to add deltaTime
 

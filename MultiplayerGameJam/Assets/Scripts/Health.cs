@@ -44,10 +44,10 @@ public class Health : MonoBehaviour
         healthbarTransform.position = new Vector3(healthbarTransform.position.x, healthbarTransform.position.y + 1.2f, healthbarTransform.position.z);
         healthbarImage.fillAmount = hp / maxHP;
 
-        // if (hp <= 0) 
-        // {
-        //     Destroy(gameObject);
-        //     EventManager.current.DestructionTrigger();
-        // }
+        if (hp <= 0) 
+        {
+            Destroy(gameObject);
+            // EventManager.current.DestructionTrigger();
+        }
     }
 }

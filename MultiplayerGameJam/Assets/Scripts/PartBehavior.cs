@@ -8,7 +8,7 @@ public class PartBehavior : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) 
     { 
-        if (other.gameObject.tag == "Player") 
+        if (other.gameObject.GetComponent<PartSlots>() != null) 
         {
             PartSlots slots = other.gameObject.GetComponent<PartSlots>();
             if (slots) 

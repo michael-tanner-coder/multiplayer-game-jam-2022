@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
           // spawn the projectile with a normalized direction
           Projectile projectile = Instantiate(_prefabProjectile, transform.position, Quaternion.identity);
           projectile.shooter = _collider;
-          Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), _collider.GetComponent<Collider2D>(), true);
+          Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
           projectile.SetDirection(aimDirection.normalized);
           projectile.Init();
         }
