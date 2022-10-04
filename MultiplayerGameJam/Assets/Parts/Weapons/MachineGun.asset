@@ -22,7 +22,7 @@ MonoBehaviour:
   maxFlySpeed: 0
   hasBoost: 0
   canFly: 0
-  fireRate: 0
+  fireRate: 4
   reloadTime: 0
   recoil: 20
   automatic: 1

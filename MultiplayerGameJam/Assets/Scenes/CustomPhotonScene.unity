@@ -1048,6 +1048,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 830933218813755965, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
+      propertyPath: weaponSlot
+      value: 
+      objectReference: {fileID: 11400000, guid: ccb9c64962bbeed45b21bcceec9930eb, type: 2}
+    - target: {fileID: 830933218813755965, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
+      propertyPath: mobilitySlot
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1374504374255858968, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
