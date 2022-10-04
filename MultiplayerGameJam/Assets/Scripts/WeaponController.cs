@@ -4,27 +4,39 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public GameObject bullet;
-    public Vector3 firingDirection;
-    public float fireRate = 3f;
+    [Header("Weapon Controller Settings")]
+    public float recoil = 0f;
+    public float fireRate = 0f;
+    public float reloadTime = 0f;
+    public float chargeTime = 0f;
+    public float damage = 0f;
+    public bool automatic = false;
 
-    void Start() 
+    [Header("Timers")]
+    private Timer reload = new Timer();
+    private Timer charge = new Timer();
+    private Timer timeBetweenShots = new Timer();
+    private Timer timeUntilCooldown = new Timer();
+
+
+    void Update() 
     {
-        firingDirection = new Vector3(1f, 0f, 0f);
+        // Update all timers
+        reload.Update();
+        charge.Update();
+        timeBetweenShots.Update();
+        timeUntilCooldown.Update();
+
+        // Check for fire input
     }
 
-    void Update()
+    public void UpdateWeaponProperties(PartScriptableObject part) 
     {
-        if (Input.GetAxis("Horizontal") > 0) {firingDirection = new Vector3(1f, 0f, 0f);}
-        if (Input.GetAxis("Horizontal") < 0) {firingDirection = new Vector3(-1f, 0f, 0f);}
-        if (Input.GetAxis("Vertical") > 0) {firingDirection = new Vector3(0f, 1f, 0f);}
-        if (Input.GetAxis("Vertical") < 0) {firingDirection = new Vector3(0f, -1f, 0f);}
-
-        if (Input.GetButtonDown("Attack"))
-        {
-            GameObject newBullet = Instantiate(bullet, gameObject.transform.position, transform.rotation);
-            newBullet.GetComponent<Projectile>().shooter = gameObject;
-            Physics2D.IgnoreCollision(newBullet.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
-        }
+        recoil = part.recoil;
+        fireRate = part.fireRate;
+        reloadTime = part.reloadTime;
+        chargeTime = part.chargeTime;
+        automatic = part.automatic;
+        damage = part.damage;
     }
 }

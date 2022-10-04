@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
   [Header("Projectiles")]
+  private WeaponController _wc;
   [SerializeField] private Projectile _prefabProjectile;
   private Timer delay = new Timer();
 
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 
   [Header("Colliders")]
   [SerializeField] private GameObject _collider;
+  private Rigidbody2D _rb;
 
   [Header("Rendering")]
   private SpriteRenderer _renderer;
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
   private void Awake()
   {
     _mc = GetComponent<MovementController>();
+    _wc = GetComponent<WeaponController>();
+    _rb = GetComponent<Rigidbody2D>();
     _parts = GetComponent<PartSlots>();
     _health = GetComponent<Health>();
     _forward = transform.forward;
@@ -147,6 +151,10 @@ public class Player : MonoBehaviour
           Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
           projectile.SetDirection(aimDirection.normalized);
           projectile.Init();
+
+          // enact recoil after firing
+          Vector3 recoilDirection = aimDirection.normalized * -1;
+          _rb.AddForce(recoilDirection * _wc.recoil);
         }
       }
   }
@@ -158,6 +166,11 @@ public class Player : MonoBehaviour
       if (_parts.mobilitySlot)
       {
         _mc.UpdateMovementProperties(_parts.mobilitySlot);
+      }
+
+      if (_parts.weaponSlot)
+      {
+        _wc.UpdateWeaponProperties(_parts.weaponSlot);
       }
       
       if (!data.direction.Equals(Vector3.zero)) 

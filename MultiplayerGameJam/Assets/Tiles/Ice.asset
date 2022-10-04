@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 11400000, guid: 1c5747f4cb7ca524ba013b66d5616747, type: 2}
-  friction: -5
+  friction: -50
   isGap: 0
   name: Ice

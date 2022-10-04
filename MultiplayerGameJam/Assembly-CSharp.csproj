@@ -89,6 +89,7 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Assistants\FusionAssistants.cs" />
      <Compile Include="Assets\PhysxBall.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\BurstDeltaCompressor.cs" />
+     <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\NetworkDebugStartGUI.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionStats\FusionStatsUtilities.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\Prefabs\FusionPrototypingPrefabs.cs" />
@@ -103,7 +104,6 @@
      <Compile Include="Assets\Photon\Fusion\Scripts\Prototyping\ControllerPrototype.cs" />
      <Compile Include="Assets\FollowMouse.cs" />
      <Compile Include="Assets\Photon\Fusion\Scripts\FusionGraph.cs" />
-     <Compile Include="Assets\Scripts\Timer.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

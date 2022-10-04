@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1374504374255858970}
   - component: {fileID: -6066348748694930396}
   - component: {fileID: 6287181306945110703}
+  - component: {fileID: 7096214582548496688}
   - component: {fileID: 5137692402333722637}
   - component: {fileID: 830933218813755965}
   - component: {fileID: 3840360129137796769}
@@ -67,6 +68,23 @@ MonoBehaviour:
   hp: 100
   maxHP: 100
   healthbar: {fileID: 147951312460857696, guid: bcc83bf20d53db6418c8eb7f3baffb06, type: 3}
+--- !u!114 &7096214582548496688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374504374255858968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d937a0b2716df3541a47f82f8b4bb13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoil: 5
+  fireRate: 0
+  reloadTime: 0
+  chargeTime: 0
+  automatic: 0
 --- !u!114 &5137692402333722637
 MonoBehaviour:
   m_ObjectHideFlags: 0

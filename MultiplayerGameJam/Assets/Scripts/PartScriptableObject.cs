@@ -26,6 +26,7 @@ public class PartScriptableObject : ScriptableObject
     public float recoil;
     public bool automatic;
     public float chargeTime;
+    public float damage;
     public GameObject projectile;
 
     [Header("Targeting")]
@@ -35,5 +36,4 @@ public class PartScriptableObject : ScriptableObject
     public float rechargeTime;
     public float damageDebuff;
     public bool isAutoTarget;
-
 }

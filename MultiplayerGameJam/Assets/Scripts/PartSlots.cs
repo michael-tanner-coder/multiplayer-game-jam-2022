@@ -36,14 +36,14 @@ public class PartSlots : MonoBehaviour
 
     public void SwapPart(PartScriptableObject slot) 
     {
-        if (slot != null) 
-        {
-            Vector3 newPosition = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+        // if (slot != null) 
+        // {
+        //     Vector3 newPosition = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
 
-            GameObject swappedPart = Instantiate(_partPrefab, newPosition, Quaternion.identity);
-            PartBehavior swappedPartBehavior = swappedPart.GetComponent<PartBehavior>();
-            swappedPartBehavior.part = slot;
-        }
+        //     GameObject swappedPart = Instantiate(_partPrefab, newPosition, Quaternion.identity);
+        //     PartBehavior swappedPartBehavior = swappedPart.GetComponent<PartBehavior>();
+        //     swappedPartBehavior.part = slot;
+        // }
     }
 
     public PartScriptableObject GetSlot(PartType type)
