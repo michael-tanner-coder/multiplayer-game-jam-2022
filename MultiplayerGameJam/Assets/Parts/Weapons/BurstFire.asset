@@ -28,7 +28,9 @@ MonoBehaviour:
   automatic: 0
   chargeTime: 0
   damage: 0
-  projectile: {fileID: 0}
+  cooldownTime: 0
+  fireTime: 0
+  projectile: {fileID: 2622100364472265910, guid: b90d79199ddb4fe46b742af3be00b0a0, type: 3}
   targetCount: 0
   targetingDelay: 0
   targetRange: 0

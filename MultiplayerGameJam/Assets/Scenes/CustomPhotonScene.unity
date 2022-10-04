@@ -1051,7 +1051,7 @@ PrefabInstance:
     - target: {fileID: 830933218813755965, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: weaponSlot
       value: 
-      objectReference: {fileID: 11400000, guid: ccb9c64962bbeed45b21bcceec9930eb, type: 2}
+      objectReference: {fileID: 11400000, guid: ae9c847d8f3e6f44da1cd49b72cfa0d3, type: 2}
     - target: {fileID: 830933218813755965, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: mobilitySlot
       value: 
@@ -1111,7 +1111,7 @@ PrefabInstance:
     - target: {fileID: 7096214582548496688, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: _prefabProjectile
       value: 
-      objectReference: {fileID: 2622100364472265909, guid: b90d79199ddb4fe46b742af3be00b0a0, type: 3}
+      objectReference: {fileID: 2622100364472265910, guid: b90d79199ddb4fe46b742af3be00b0a0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
 --- !u!1 &1692789311

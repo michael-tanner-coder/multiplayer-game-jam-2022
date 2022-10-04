@@ -13,16 +13,21 @@ public class WeaponController : MonoBehaviour
     public float cooldownTime = 0f;
     public float timeUntilCooldown = 0f;
     public bool automatic = false;
-    [SerializeField] private Projectile _prefabProjectile;
+    [SerializeField] private GameObject _prefabProjectile;
 
     [Header("Timers")]
     private Timer charge = new Timer();
     private Timer timeBetweenShots = new Timer();
     private Timer cooldown = new Timer();
 
+    [Header("Bombs")]
+    private List<SmartBomb> smartbombs = new List<SmartBomb>();
+
     // Events
     public delegate void OnShoot(Vector3 recoilDirection, float recoilAmount);
+    public delegate void OnShootAttempt();
     public static OnShoot onShoot;
+    public static OnShootAttempt onShootAttempt;
 
     void Update() 
     {
@@ -30,6 +35,12 @@ public class WeaponController : MonoBehaviour
         charge.Update();
         cooldown.Update();
         timeBetweenShots.Update();
+
+        // Check for smart bomb activation
+        if (Input.GetMouseButtonDown(1))
+        {
+            onShootAttempt?.Invoke();
+        }
 
         // Check for fire input
         if (timeBetweenShots.ExpiredOrNotRunning()) {
@@ -50,10 +61,11 @@ public class WeaponController : MonoBehaviour
                 timeBetweenShots = Timer.CreateFromSeconds(1/fireRate);
 
                 // spawn the projectile with a normalized direction
-                Projectile projectile = Instantiate(_prefabProjectile, transform.position, Quaternion.identity);
+                GameObject projectile = Instantiate(_prefabProjectile, transform.position, Quaternion.identity);
+                IProjectile projectileInterface = projectile.GetComponent<IProjectile>();
                 Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
-                projectile.SetDirection(aimDirection.normalized);
-                projectile.Init();
+                projectileInterface.SetDirection(aimDirection.normalized);
+                projectileInterface.Init();
 
                 // enact recoil after firing
                 Vector3 recoilDirection = aimDirection.normalized * -1;
@@ -101,5 +113,6 @@ public class WeaponController : MonoBehaviour
         cooldownTime = part.cooldownTime;
         fireTime = part.fireTime;
         timeUntilCooldown = part.fireTime;
+        _prefabProjectile = part.projectile;
     }
 }

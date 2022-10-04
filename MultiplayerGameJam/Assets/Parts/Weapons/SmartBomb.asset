@@ -22,13 +22,15 @@ MonoBehaviour:
   maxFlySpeed: 0
   hasBoost: 0
   canFly: 0
-  fireRate: 0
+  fireRate: 0.2
   reloadTime: 0
   recoil: 0
   automatic: 0
   chargeTime: 0
   damage: 0
-  projectile: {fileID: 0}
+  cooldownTime: 0
+  fireTime: 0
+  projectile: {fileID: 4226091130130618017, guid: f3586252cfd58d04f8dd04fb6cef0eb0, type: 3}
   targetCount: 0
   targetingDelay: 0
   targetRange: 0
