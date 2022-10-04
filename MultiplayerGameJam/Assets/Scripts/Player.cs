@@ -57,11 +57,27 @@ public class Player : MonoBehaviour
   void Start() 
   {
     WeaponController.onShoot += Recoil;
+    PartBehavior.onCollect += Collect;
   }
 
   void Recoil(Vector3 recoilDirection, float recoilAmount) 
   {
     _rb.AddForce(recoilDirection * recoilAmount);
+  }
+
+  void Collect(PartScriptableObject newPart) 
+  {
+    switch(newPart.type) 
+    {
+      case PartType.WEAPON:
+        _wc.UpdateWeaponProperties(newPart);
+        break;
+      case PartType.MOBILITY:
+        _mc.UpdateMovementProperties(newPart);
+        break;
+      case PartType.TARGETING:
+        break;
+    }
   }
 
   private void CheckForBoost(NetworkInputData data)
@@ -152,16 +168,6 @@ public class Player : MonoBehaviour
   public void FixedUpdate()
   {
       data.direction.Normalize();
-
-      if (_parts.mobilitySlot)
-      {
-        _mc.UpdateMovementProperties(_parts.mobilitySlot);
-      }
-
-      if (_parts.weaponSlot)
-      {
-        _wc.UpdateWeaponProperties(_parts.weaponSlot);
-      }
       
       if (!data.direction.Equals(Vector3.zero)) 
       {

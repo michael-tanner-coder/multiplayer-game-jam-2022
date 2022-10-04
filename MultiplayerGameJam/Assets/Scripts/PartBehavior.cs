@@ -5,6 +5,9 @@ using UnityEngine;
 public class PartBehavior : MonoBehaviour
 {
     public PartScriptableObject part;
+    public delegate void OnCollect(PartScriptableObject newPart);
+    public static OnCollect onCollect;
+
 
     void OnCollisionEnter2D(Collision2D other) 
     { 
@@ -14,6 +17,7 @@ public class PartBehavior : MonoBehaviour
             if (slots) 
             {
                 slots.SetSlot(part);
+                onCollect?.Invoke(part);
             }
             
             Destroy(gameObject);
