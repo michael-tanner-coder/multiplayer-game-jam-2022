@@ -1,5 +1,6 @@
 using Fusion;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -53,6 +54,16 @@ public class Player : MonoBehaviour
     _forward = transform.forward;
   }
 
+  void Start() 
+  {
+    WeaponController.onShoot += Recoil;
+  }
+
+  void Recoil(Vector3 recoilDirection, float recoilAmount) 
+  {
+    _rb.AddForce(recoilDirection * recoilAmount);
+  }
+
   private void CheckForBoost(NetworkInputData data)
   {
       // only activate the boost if the player has a part with this ability and if it has been recharged or unused
@@ -80,6 +91,11 @@ public class Player : MonoBehaviour
       {
         boostChargeTime = Timer.None;
       }
+  }
+
+  private void OnShoot(Vector3 direction) 
+  {
+    _rb.AddForce(direction);
   }
 
   void Update() 
@@ -131,32 +147,6 @@ public class Player : MonoBehaviour
             data.buttons |= NetworkInputData.MOUSEBUTTON2;
         }
         _mouseButton1 = false;
-
-        
-      if (delay.ExpiredOrNotRunning())
-      {
-        if ((!_wc.automatic && Input.GetMouseButtonDown(0) || (_wc.automatic && Input.GetMouseButton(0))))
-        {
-          // get vector for projectile based on current aiming direction
-          Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-          mousePosition.z = transform.position.z;
-          Vector3 aimDirection = mousePosition - transform.position;
-
-          // start delay timer to prevent continous shooting
-          delay = Timer.CreateFromSeconds(1/_wc.fireRate);
-
-          // spawn the projectile with a normalized direction
-          Projectile projectile = Instantiate(_prefabProjectile, transform.position, Quaternion.identity);
-          projectile.shooter = _collider;
-          Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
-          projectile.SetDirection(aimDirection.normalized);
-          projectile.Init();
-
-          // enact recoil after firing
-          Vector3 recoilDirection = aimDirection.normalized * -1;
-          _rb.AddForce(recoilDirection * _wc.recoil);
-        }
-      }
   }
 
   public void FixedUpdate()

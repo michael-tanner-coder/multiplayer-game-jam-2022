@@ -9,7 +9,6 @@ public class Projectile : MonoBehaviour
   private Timer life = new Timer();
   private Vector3 _direction { get; set; }
   [SerializeField] private float _speed = 10f;
-  public GameObject shooter;
 
   public void SetDirection(Vector3 direction)
   {
