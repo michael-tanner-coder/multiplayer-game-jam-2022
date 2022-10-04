@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
         
       if (delay.ExpiredOrNotRunning())
       {
-        if (Input.GetMouseButtonDown(0))
+        if ((!_wc.automatic && Input.GetMouseButtonDown(0) || (_wc.automatic && Input.GetMouseButton(0))))
         {
           // get vector for projectile based on current aiming direction
           Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
           Vector3 aimDirection = mousePosition - transform.position;
 
           // start delay timer to prevent continous shooting
-          delay = Timer.CreateFromSeconds(0.5f);
+          delay = Timer.CreateFromSeconds(1/_wc.fireRate);
 
           // spawn the projectile with a normalized direction
           Projectile projectile = Instantiate(_prefabProjectile, transform.position, Quaternion.identity);
