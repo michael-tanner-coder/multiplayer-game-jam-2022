@@ -1051,7 +1051,7 @@ PrefabInstance:
     - target: {fileID: 830933218813755965, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: weaponSlot
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: ccb9c64962bbeed45b21bcceec9930eb, type: 2}
     - target: {fileID: 830933218813755965, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: mobilitySlot
       value: 

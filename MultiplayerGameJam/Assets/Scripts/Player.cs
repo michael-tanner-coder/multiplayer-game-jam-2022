@@ -58,6 +58,16 @@ public class Player : MonoBehaviour
   {
     WeaponController.onShoot += Recoil;
     PartBehavior.onCollect += Collect;
+
+    if (_parts.weaponSlot) 
+    {
+      _wc.UpdateWeaponProperties(_parts.weaponSlot);
+    }
+
+    if (_parts.mobilitySlot)
+    {
+      _mc.UpdateMovementProperties(_parts.mobilitySlot);
+    }
   }
 
   void Recoil(Vector3 recoilDirection, float recoilAmount) 

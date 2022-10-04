@@ -28,6 +28,8 @@ MonoBehaviour:
   automatic: 1
   chargeTime: 0
   damage: 0
+  cooldownTime: 5
+  fireTime: 0.2
   projectile: {fileID: 0}
   targetCount: 0
   targetingDelay: 0

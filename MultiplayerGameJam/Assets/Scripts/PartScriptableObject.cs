@@ -27,6 +27,8 @@ public class PartScriptableObject : ScriptableObject
     public bool automatic;
     public float chargeTime;
     public float damage;
+    public float cooldownTime;
+    public float fireTime;
     public GameObject projectile;
 
     [Header("Targeting")]
