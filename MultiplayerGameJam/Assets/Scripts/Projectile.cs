@@ -43,7 +43,6 @@ public class Projectile : MonoBehaviour, IProjectile
       // Destroy any destructible objects
       if (other.gameObject.GetComponent<IDestructible>() != null) 
       {
-        Debug.Log("HIT DESTRUCTIBLE");
         IDestructible destructible = other.gameObject.GetComponent<IDestructible>();
         destructible.Destruct();
       }

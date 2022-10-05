@@ -33,5 +33,12 @@ public class Explosion : MonoBehaviour
         Health health = other.gameObject.GetComponent<Health>();
         health.TakeDamage(explosionDamage);
       }
+
+      // Destroy any destructible objects
+      if (other.gameObject.GetComponent<IDestructible>() != null) 
+      {
+        IDestructible destructible = other.gameObject.GetComponent<IDestructible>();
+        destructible.Destruct();
+      }
     }
 }
