@@ -5,10 +5,18 @@ using UnityEngine;
 public class Missile : MonoBehaviour, IProjectile
 {
     [SerializeField] private GameObject explosion;
+    private Vector3 _direction { get; set; }
+    [SerializeField] private float _speed = 10f;
     
-    public void Init(){}
+    public void Init()
+    {
+        GetComponent<Rigidbody2D>().velocity = _direction * _speed;
+    }
 
-    public void SetDirection(){}
+    public void SetDirection(Vector3 direction)
+    {
+        _direction = direction.normalized;
+    }
 
     public void Explode() 
     {
