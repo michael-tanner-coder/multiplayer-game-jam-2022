@@ -20,9 +20,6 @@ public class WeaponController : MonoBehaviour
     private Timer timeBetweenShots = new Timer();
     private Timer cooldown = new Timer();
 
-    [Header("Bombs")]
-    private List<SmartBomb> smartbombs = new List<SmartBomb>();
-
     // Events
     public delegate void OnShoot(Vector3 recoilDirection, float recoilAmount);
     public delegate void OnShootAttempt();

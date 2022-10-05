@@ -6,6 +6,7 @@ public class SmartBomb : MonoBehaviour, IProjectile
 {
     private Rigidbody2D _rb;
     private float speed = 10f;
+    [SerializeField] private GameObject explosion;
     
     public void Awake() 
     {
@@ -30,6 +31,7 @@ public class SmartBomb : MonoBehaviour, IProjectile
     public void Explode() 
     {
         WeaponController.onShootAttempt -= Explode;
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
