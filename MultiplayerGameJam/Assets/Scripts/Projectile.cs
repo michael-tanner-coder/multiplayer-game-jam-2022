@@ -33,12 +33,22 @@ public class Projectile : MonoBehaviour, IProjectile
 
   void OnCollisionEnter2D(Collision2D other) 
     { 
+      // Damage any game object with a health component
       if (other.gameObject.GetComponent<Health>() != null) 
       {
           Health health = other.gameObject.GetComponent<Health>();
           health.TakeDamage(10f);
       }
+
+      // Destroy any destructible objects
+      if (other.gameObject.GetComponent<IDestructible>() != null) 
+      {
+        Debug.Log("HIT DESTRUCTIBLE");
+        IDestructible destructible = other.gameObject.GetComponent<IDestructible>();
+        destructible.Destruct();
+      }
       
+      // Destroy self after impact
       Destroy(gameObject);
     }
 }
