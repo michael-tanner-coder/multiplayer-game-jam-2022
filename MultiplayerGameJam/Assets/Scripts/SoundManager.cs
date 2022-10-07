@@ -35,7 +35,7 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        // Play("Battle Song");
+        Play("Battle Song");
     }
 
     public void Play(string name)

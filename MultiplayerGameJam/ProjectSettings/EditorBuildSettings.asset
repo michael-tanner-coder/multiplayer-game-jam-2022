@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/PhotonTest.unity
     guid: 2154b64ed1d7f3f4a8bf4c2cd7ba2e74
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Options.unity
     guid: a1d1263e9f957414ea3ad93baa2f5919
   - enabled: 1
     path: Assets/Scenes/LoseScreen.unity
