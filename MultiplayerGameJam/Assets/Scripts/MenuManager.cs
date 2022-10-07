@@ -6,7 +6,17 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager menuManager { get; private set; }
+    
+    public void StartMapSelection() 
+    {
+        SceneManager.LoadScene("MapSelection");
+    }
 
+    public void StartRobotSelection() 
+    {
+        SceneManager.LoadScene("RobotSelection");
+    }
+    
     public void StartMatch() 
     {
         SceneManager.LoadScene("Arena");
@@ -32,4 +42,9 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
  
+    public void Options() 
+    {
+        SceneManager.LoadScene("Options");
+    }
+
 }

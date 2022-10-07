@@ -10,4 +10,10 @@ public class SoundHandler : MonoBehaviour
     {
        FindObjectOfType<SoundManager>().Play(sound_name);
     }
+
+    void Start() 
+    {
+        Button button = GetComponent<Button>();
+        button.onClick.AddListener(() => PlaySound("Button"));
+    }
 }
