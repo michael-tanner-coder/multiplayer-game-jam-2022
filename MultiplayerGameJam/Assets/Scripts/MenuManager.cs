@@ -47,4 +47,18 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("Options");
     }
 
+    public void ToggleFullScreen() 
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+
+    public void SetMasterVolume(System.Single volume) 
+    {
+        AudioSource[] sounds = FindObjectsOfType<AudioSource>() as AudioSource[]; 
+        foreach(AudioSource audio in sounds) 
+        { 
+            audio.volume=volume; 
+        }
+    }
+
 }
