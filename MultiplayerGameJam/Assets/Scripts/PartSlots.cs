@@ -13,6 +13,9 @@ public class PartSlots : MonoBehaviour
 
     [SerializeField] private GameObject _partPrefab;
 
+    public delegate void OnPartChange(PartScriptableObject newPart);
+    public static OnPartChange onPartChange;
+
     public void SetSlot(PartScriptableObject newPart)
     {
         if (newPart.type == PartType.WEAPON) 
@@ -31,6 +34,38 @@ public class PartSlots : MonoBehaviour
         {
             SwapPart(targetingSlot);
             targetingSlot = newPart;
+        }
+
+        onPartChange?.Invoke(newPart);
+    }
+
+    public void SetAllSlots(Robot robot) 
+    {
+        if (robot.weapon) 
+        {
+            SetSlot(robot.weapon);
+        }
+        else 
+        {
+            weaponSlot = null;
+        }
+
+        if (robot.mobility) 
+        {
+            SetSlot(robot.mobility);
+        }
+        else 
+        {
+            mobilitySlot = null;
+        }
+
+        if (robot.targeting) 
+        {
+            SetSlot(robot.targeting);
+        }
+        else 
+        {
+            targetingSlot = null;
         }
     }
 

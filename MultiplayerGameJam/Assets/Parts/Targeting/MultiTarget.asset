@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874aa177c14767542a23aee70a9e18d4, type: 3}
   m_Name: MultiTarget
   m_EditorClassIdentifier: 
-  name: 
-  type: 0
+  name: Multi-Target
+  type: 2
   acceleration: 0
   braking: 0
   maxSpeed: 0
@@ -27,6 +27,9 @@ MonoBehaviour:
   recoil: 0
   automatic: 0
   chargeTime: 0
+  damage: 0
+  cooldownTime: 0
+  fireTime: 0
   projectile: {fileID: 0}
   targetCount: 0
   targetingDelay: 0
