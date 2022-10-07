@@ -5,9 +5,10 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class MovementController : MonoBehaviour {
   [Header("Movement Controller Settings")]
-  public float acceleration  = 10.0f;
-  public float braking       = 10.0f;
-  public float maxSpeed      = 4.0f;
+  public float acceleration  = 50.0f;
+  public float braking       = 60.0f;
+  public float maxSpeed      = 100.0f;
+  public float baseSpeed = 10f;
 
   [Networked]
   [HideInInspector]
@@ -82,7 +83,7 @@ public class MovementController : MonoBehaviour {
     moveVelocity.y = verticalVel.y;
 
     // transform.position += (moveVelocity * deltaTime);
-    _rb.AddForce(moveVelocity);
+    _rb.AddForce(moveVelocity * baseSpeed);
 
     Velocity = (transform.position - previousPos); // may need to add deltaTime
 
