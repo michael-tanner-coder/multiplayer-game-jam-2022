@@ -61,4 +61,24 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void StartMetalLevel() 
+    {
+        SceneManager.LoadScene("MetalLevel");
+    }
+
+    public void StartIceLevel() 
+    {
+        SceneManager.LoadScene("IceLevel");
+    }
+
+    public void StartSandLevel() 
+    {
+        SceneManager.LoadScene("SandLevel");
+    }
+
+    public void StartGapLevel() 
+    {
+        SceneManager.LoadScene("GapLevel");
+    }
+
 }
