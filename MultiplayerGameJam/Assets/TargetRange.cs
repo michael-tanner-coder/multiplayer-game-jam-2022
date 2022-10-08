@@ -36,6 +36,11 @@ public class TargetRange : MonoBehaviour
         line.SetPosition(1, points[1]);
     }
 
+    public void SetRange(float newRange) 
+    { 
+        range = newRange;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player") 

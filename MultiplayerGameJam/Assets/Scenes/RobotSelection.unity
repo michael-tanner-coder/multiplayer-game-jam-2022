@@ -1620,6 +1620,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3868028627306036550, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
+      propertyPath: targetRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868028627306036550, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
+      propertyPath: maxTargetCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7096214582548496688, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: recoil
       value: 50
@@ -1628,6 +1636,10 @@ PrefabInstance:
       propertyPath: _prefabProjectile
       value: 
       objectReference: {fileID: 2622100364472265910, guid: b90d79199ddb4fe46b742af3be00b0a0, type: 3}
+    - target: {fileID: 8181326496398460932, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8496037811343941989, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
