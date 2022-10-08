@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
     public GameObject healthbar;
     private GameObject canvas;
     private GameObject hpBar;
+    public delegate void OnHealthGone(GameObject obj);
+    public static OnHealthGone onHealthGone;
 
     public void Start() 
     {

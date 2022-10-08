@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     PartBehavior.onCollect += Collect;
     PartSlots.onPartChange += OnPartChange;
     TargetRange.foundTarget += FoundTarget;
+    Health.onHealthGone += OnHealthGone;
 
     if (_parts.weaponSlot) 
     {
@@ -91,6 +92,18 @@ public class Player : MonoBehaviour
     _wc.UpdateWeaponProperties(newPart);
     _mc.UpdateMovementProperties(newPart);
     _tc.UpdateTargetingProperties(newPart);
+  }
+
+  void OnHealthGone(GameObject go)
+  {
+    if (go.Equals(gameObject))
+    {
+      WeaponController.onShoot -= Recoil;
+      PartBehavior.onCollect -= Collect;
+      PartSlots.onPartChange -= OnPartChange;
+      TargetRange.foundTarget -= FoundTarget;
+      Health.onHealthGone -= OnHealthGone;
+    }
   }
 
   void OnPartChange() 
