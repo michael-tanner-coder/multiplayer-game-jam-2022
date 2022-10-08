@@ -113,6 +113,8 @@
      <Compile Include="Assets\Robots\Robot.cs" />
      <Compile Include="Assets\RobotType.cs" />
      <Compile Include="Assets\ExitRobotSelection.cs" />
+     <Compile Include="Assets\Scripts\TargetingController.cs" />
+     <Compile Include="Assets\TargetRange.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
