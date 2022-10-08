@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6287181306945110703}
   - component: {fileID: 7096214582548496688}
   - component: {fileID: 5137692402333722637}
+  - component: {fileID: 3868028627306036550}
   - component: {fileID: 830933218813755965}
   - component: {fileID: 3840360129137796769}
   - component: {fileID: 235979019423948757}
@@ -106,6 +107,26 @@ MonoBehaviour:
   braking: 60
   maxSpeed: 100
   baseSpeed: 10
+--- !u!114 &3868028627306036550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374504374255858968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe66c48002ef8449b903198737f3ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCount: 0
+  targetingDelay: 0
+  targetRange: 0
+  rechargeTime: 0
+  damageDebuff: 0
+  isAutoTarget: 0
+  targets: []
+  _reticlePrefab: {fileID: 8784826895509168714, guid: fa0b8b1ef33ba4e4e85adcb1104e33b9, type: 3}
 --- !u!114 &830933218813755965
 MonoBehaviour:
   m_ObjectHideFlags: 0

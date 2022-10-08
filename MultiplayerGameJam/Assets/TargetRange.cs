@@ -8,6 +8,12 @@ public class TargetRange : MonoBehaviour
     private CircleCollider2D circle;
     private Vector2[] points = new Vector2[2];
     [SerializeField] private float range = 1.5f;
+
+    public delegate void FoundTarget(GameObject target);
+    public static FoundTarget foundTarget;
+
+    public delegate void LostTarget(GameObject target);
+    public static LostTarget lostTarget;
     
     void Start()
     {
@@ -18,7 +24,6 @@ public class TargetRange : MonoBehaviour
         line.positionCount = 2;
     }
     
-    // Update is called once per frame
     void Update()
     {
         transform.localScale = new Vector3(range * 2, range * 2, range * 2);
@@ -29,5 +34,21 @@ public class TargetRange : MonoBehaviour
         points[1] = Vector2.MoveTowards(startPoint, endPoint, range);
         line.SetPosition(0, points[0]);
         line.SetPosition(1, points[1]);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player") 
+        {
+            foundTarget?.Invoke(other.gameObject);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player") 
+        {
+            lostTarget?.Invoke(other.gameObject);
+        }
     }
 }

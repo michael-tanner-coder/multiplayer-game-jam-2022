@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
   private Timer boostChargeTime = new Timer();
   private Timer boostTime = new Timer();
 
+  [Header("Targeting")]
+  private TargetingController _tc;
+
   [Header("Parts")]
   private PartSlots _parts;
 
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
   {
     _mc = GetComponent<MovementController>();
     _wc = GetComponent<WeaponController>();
+    _tc = GetComponent<TargetingController>();
     _rb = GetComponent<Rigidbody2D>();
     _parts = GetComponent<PartSlots>();
     _health = GetComponent<Health>();
@@ -59,6 +63,7 @@ public class Player : MonoBehaviour
     WeaponController.onShoot += Recoil;
     PartBehavior.onCollect += Collect;
     PartSlots.onPartChange += OnPartChange;
+    TargetRange.foundTarget += FoundTarget;
 
     if (_parts.weaponSlot) 
     {
@@ -86,6 +91,12 @@ public class Player : MonoBehaviour
   {
     _wc.UpdateWeaponProperties(_parts.weaponSlot);
     _mc.UpdateMovementProperties(_parts.mobilitySlot);
+  }
+
+  void FoundTarget(GameObject target) 
+  {
+    Debug.Log("FoundTarget");
+    Debug.Log(target);
   }
 
   private void CheckForBoost(NetworkInputData data)
