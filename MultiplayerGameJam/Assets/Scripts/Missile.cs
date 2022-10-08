@@ -6,6 +6,7 @@ public class Missile : MonoBehaviour, IProjectile
 {
     [SerializeField] private GameObject explosion;
     private Vector3 _direction { get; set; }
+    private float _damage = 10f;
     [SerializeField] private float _speed = 10f;
     
     public void Init()
@@ -16,6 +17,11 @@ public class Missile : MonoBehaviour, IProjectile
     public void SetDirection(Vector3 direction)
     {
         _direction = direction.normalized;
+    }
+
+    public void SetDamage(float damage) 
+    {
+      _damage = damage;
     }
 
     public void Explode() 

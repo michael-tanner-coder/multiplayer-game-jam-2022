@@ -74,6 +74,11 @@ public class Player : MonoBehaviour
     {
       _mc.UpdateMovementProperties(_parts.mobilitySlot);
     }
+
+    if (_parts.targetingSlot)
+    {
+      _tc.UpdateTargetingProperties(_parts.targetingSlot);
+    }
   }
 
   void Recoil(Vector3 recoilDirection, float recoilAmount) 
@@ -85,12 +90,14 @@ public class Player : MonoBehaviour
   {
     _wc.UpdateWeaponProperties(newPart);
     _mc.UpdateMovementProperties(newPart);
+    _tc.UpdateTargetingProperties(newPart);
   }
 
   void OnPartChange() 
   {
     _wc.UpdateWeaponProperties(_parts.weaponSlot);
     _mc.UpdateMovementProperties(_parts.mobilitySlot);
+    _tc.UpdateTargetingProperties(_parts.targetingSlot);
   }
 
   void FoundTarget(GameObject target) 

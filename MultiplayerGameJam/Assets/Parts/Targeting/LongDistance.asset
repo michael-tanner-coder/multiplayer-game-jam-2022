@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 874aa177c14767542a23aee70a9e18d4, type: 3}
-  m_Name: AutoTarget
+  m_Name: LongDistance
   m_EditorClassIdentifier: 
-  name: Auto Target
+  name: Long Distance
   type: 2
   acceleration: 0
   braking: 0
@@ -31,9 +31,6 @@ MonoBehaviour:
   cooldownTime: 0
   fireTime: 0
   projectile: {fileID: 0}
-  targetCount: 0
-  targetingDelay: 0
-  targetRange: 0
-  rechargeTime: 0
-  damageDebuff: 0
-  isAutoTarget: 0
+  targetCount: 1
+  targetRange: 5
+  damageDebuff: 0.75

@@ -28,6 +28,11 @@ public class SmartBomb : MonoBehaviour, IProjectile
         _rb.AddForce(direction * speed);
     }
 
+    public void SetDamage(float damage) 
+    {
+      Debug.Log("Smart Bomb does not implement SetDamage. Maybe this shouldn't have been an interface ;^)");
+    }
+
     public void Explode() 
     {
         WeaponController.onShootAttempt -= Explode;

@@ -26,6 +26,14 @@ public class WeaponController : MonoBehaviour
     public static OnShoot onShoot;
     public static OnShootAttempt onShootAttempt;
 
+    // Controller communication
+    private TargetingController _tc;
+
+    void Start() 
+    {
+        _tc = GetComponent<TargetingController>();
+    }
+
     void Update() 
     {
         // Update all timers
@@ -62,6 +70,7 @@ public class WeaponController : MonoBehaviour
                 IProjectile projectileInterface = projectile.GetComponent<IProjectile>();
                 Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
                 projectileInterface.SetDirection(aimDirection.normalized);
+                projectileInterface.SetDamage(damage - damage * _tc.damageDebuff);
                 projectileInterface.Init();
 
                 // enact recoil after firing

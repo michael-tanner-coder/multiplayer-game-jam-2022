@@ -31,9 +31,6 @@ MonoBehaviour:
   cooldownTime: 0
   fireTime: 0
   projectile: {fileID: 0}
-  targetCount: 0
-  targetingDelay: 0
-  targetRange: 0
-  rechargeTime: 0
-  damageDebuff: 0
-  isAutoTarget: 0
+  targetCount: 3
+  targetRange: 2
+  damageDebuff: 0.5

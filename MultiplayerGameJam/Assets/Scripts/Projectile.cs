@@ -8,11 +8,17 @@ public class Projectile : MonoBehaviour, IProjectile
 {
   private Timer life = new Timer();
   private Vector3 _direction { get; set; }
+  private float _damage = 10f;
   [SerializeField] private float _speed = 10f;
 
   public void SetDirection(Vector3 direction)
   {
     _direction = direction.normalized;
+  }
+
+  public void SetDamage(float damage)
+  {
+    _damage = damage;
   }
 
   public void Init()
@@ -37,7 +43,7 @@ public class Projectile : MonoBehaviour, IProjectile
       if (other.gameObject.GetComponent<Health>() != null) 
       {
           Health health = other.gameObject.GetComponent<Health>();
-          health.TakeDamage(10f);
+          health.TakeDamage(_damage);
       }
 
       // Destroy any destructible objects

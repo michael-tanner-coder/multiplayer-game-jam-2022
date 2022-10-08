@@ -33,9 +33,7 @@ public class PartScriptableObject : ScriptableObject
 
     [Header("Targeting")]
     public int targetCount;
-    public float targetingDelay;
     public float targetRange;
-    public float rechargeTime;
+    [Range(0.0f, 1.0f)]
     public float damageDebuff;
-    public bool isAutoTarget;
 }
