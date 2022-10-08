@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
   {
     WeaponController.onShoot += Recoil;
     PartBehavior.onCollect += Collect;
+    PartSlots.onPartChange += OnPartChange;
 
     if (_parts.weaponSlot) 
     {
@@ -77,17 +78,14 @@ public class Player : MonoBehaviour
 
   void Collect(PartScriptableObject newPart) 
   {
-    switch(newPart.type) 
-    {
-      case PartType.WEAPON:
-        _wc.UpdateWeaponProperties(newPart);
-        break;
-      case PartType.MOBILITY:
-        _mc.UpdateMovementProperties(newPart);
-        break;
-      case PartType.TARGETING:
-        break;
-    }
+    _wc.UpdateWeaponProperties(newPart);
+    _mc.UpdateMovementProperties(newPart);
+  }
+
+  void OnPartChange() 
+  {
+    _wc.UpdateWeaponProperties(_parts.weaponSlot);
+    _mc.UpdateMovementProperties(_parts.mobilitySlot);
   }
 
   private void CheckForBoost(NetworkInputData data)

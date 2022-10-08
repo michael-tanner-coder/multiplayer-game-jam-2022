@@ -102,14 +102,31 @@ public class WeaponController : MonoBehaviour
 
     public void UpdateWeaponProperties(PartScriptableObject part) 
     {
-        recoil = part.recoil;
-        fireRate = part.fireRate;
-        chargeTime = part.chargeTime;
-        automatic = part.automatic;
-        damage = part.damage;
-        cooldownTime = part.cooldownTime;
-        fireTime = part.fireTime;
-        timeUntilCooldown = part.fireTime;
-        _prefabProjectile = part.projectile;
+        if (part == null) 
+        {
+             // TODO: need default values
+            recoil = 0f;
+            fireRate = 0f;
+            chargeTime = 0f;
+            automatic = false;
+            damage = 0f;
+            cooldownTime = 0f;
+            fireTime = 0f;
+            timeUntilCooldown = 0f;
+            return;
+        }
+
+        if (part.type == PartType.WEAPON)
+        {
+            recoil = part.recoil;
+            fireRate = part.fireRate;
+            chargeTime = part.chargeTime;
+            automatic = part.automatic;
+            damage = part.damage;
+            cooldownTime = part.cooldownTime;
+            fireTime = part.fireTime;
+            timeUntilCooldown = part.fireTime;
+            _prefabProjectile = part.projectile;
+        }
     }
 }

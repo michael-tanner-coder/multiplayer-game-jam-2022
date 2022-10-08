@@ -106,8 +106,20 @@ public class MovementController : MonoBehaviour {
 
   public void UpdateMovementProperties(PartScriptableObject part)
   {
-    acceleration = part.acceleration;
-    braking = part.braking;
-    maxSpeed = part.maxSpeed;
+    if (part == null) 
+    {
+      // TODO: need default values
+      acceleration = 50f;
+      braking = 60f;
+      maxSpeed = 100f;
+      return;
+    }
+
+    if (part.type == PartType.MOBILITY)
+    {
+      acceleration = part.acceleration;
+      braking = part.braking;
+      maxSpeed = part.maxSpeed;
+    }
   }
 }
