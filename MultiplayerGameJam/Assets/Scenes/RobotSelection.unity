@@ -1149,7 +1149,7 @@ PrefabInstance:
     - target: {fileID: 830933218813755965, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: weaponSlot
       value: 
-      objectReference: {fileID: 11400000, guid: 81b6335bad8307a439574dfd80530961, type: 2}
+      objectReference: {fileID: 11400000, guid: d7e1c5b2326753b46b8b432bc5c12cef, type: 2}
     - target: {fileID: 830933218813755965, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
       propertyPath: targetingSlot
       value: 

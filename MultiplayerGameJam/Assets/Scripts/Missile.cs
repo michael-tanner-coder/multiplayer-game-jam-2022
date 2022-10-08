@@ -30,6 +30,15 @@ public class Missile : MonoBehaviour, IProjectile
       _target = target;
     }
 
+    void Update() 
+    {
+      if (_target) 
+      {
+        Vector3 targetDirection = _target.transform.position - transform.position;
+        GetComponent<Rigidbody2D>().velocity = targetDirection.normalized * _speed;
+      }
+    }
+
     public void Explode() 
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
