@@ -55,6 +55,11 @@ public class TargetingController : MonoBehaviour
             }
         }
     }
+
+    public List<GameObject> GetTargets() 
+    {   
+        return targets;
+    }
     
     public void UpdateTargetingProperties(PartScriptableObject part) 
     {

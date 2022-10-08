@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2801362251144470371}
   m_Layer: 0
   m_Name: Missile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 3256023526873830972, guid: 961d571bf67b30746a1d18bc76312e0b, type: 3}
+  _speed: 10
 --- !u!50 &3587152428091320674
 Rigidbody2D:
   serializedVersion: 4

@@ -6,6 +6,7 @@ public class SmartBomb : MonoBehaviour, IProjectile
 {
     private Rigidbody2D _rb;
     private float speed = 10f;
+    private GameObject _target;
     [SerializeField] private GameObject explosion;
     
     public void Awake() 
@@ -31,6 +32,11 @@ public class SmartBomb : MonoBehaviour, IProjectile
     public void SetDamage(float damage) 
     {
       Debug.Log("Smart Bomb does not implement SetDamage. Maybe this shouldn't have been an interface ;^)");
+    }
+
+    public void SetTarget(GameObject target)
+    {
+      _target = target;
     }
 
     public void Explode() 

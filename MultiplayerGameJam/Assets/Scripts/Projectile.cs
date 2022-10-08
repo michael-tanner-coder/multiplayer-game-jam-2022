@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour, IProjectile
   private Timer life = new Timer();
   private Vector3 _direction { get; set; }
   private float _damage = 10f;
+  private GameObject _target;
   [SerializeField] private float _speed = 10f;
 
   public void SetDirection(Vector3 direction)
@@ -21,6 +22,11 @@ public class Projectile : MonoBehaviour, IProjectile
     _damage = damage;
   }
 
+  public void SetTarget(GameObject target)
+  {
+    _target = target;
+  }
+
   public void Init()
   {
     life = Timer.CreateFromSeconds(5.0f);
@@ -30,6 +36,12 @@ public class Projectile : MonoBehaviour, IProjectile
   public void Update() 
   {
     life.Update();
+
+    if (_target) 
+    {
+      Vector3 targetDirection = _target.transform.position - transform.position;
+      GetComponent<Rigidbody2D>().velocity = targetDirection.normalized * _speed;
+    }
 
     if (life.Expired())
     {
@@ -54,6 +66,9 @@ public class Projectile : MonoBehaviour, IProjectile
       }
       
       // Destroy self after impact
-      Destroy(gameObject);
+      if (other.gameObject.tag != "Projectile")
+      {
+        Destroy(gameObject);
+      }
     }
 }

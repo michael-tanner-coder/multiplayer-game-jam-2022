@@ -34,6 +34,17 @@ public class WeaponController : MonoBehaviour
         _tc = GetComponent<TargetingController>();
     }
 
+    IProjectile SpawnProjectile(Vector3 projectileDirection, float projectileDamage) 
+    {
+        GameObject projectile = Instantiate(_prefabProjectile, transform.position, Quaternion.identity);
+        IProjectile projectileInterface = projectile.GetComponent<IProjectile>();
+        Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
+        projectileInterface.SetDirection(projectileDirection.normalized);
+        projectileInterface.SetDamage(projectileDamage);
+        projectileInterface.Init();
+        return projectileInterface;
+    }
+
     void Update() 
     {
         // Update all timers
@@ -65,13 +76,22 @@ public class WeaponController : MonoBehaviour
                 // start delay timer to prevent continous shooting
                 timeBetweenShots = Timer.CreateFromSeconds(1/fireRate);
 
-                // spawn the projectile with a normalized direction
-                GameObject projectile = Instantiate(_prefabProjectile, transform.position, Quaternion.identity);
-                IProjectile projectileInterface = projectile.GetComponent<IProjectile>();
-                Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
-                projectileInterface.SetDirection(aimDirection.normalized);
-                projectileInterface.SetDamage(damage - damage * _tc.damageDebuff);
-                projectileInterface.Init();
+                if (_tc.GetTargets().Count > 0)
+                {
+                    // foreach target in the tc, spawn a projectile in the direction of the current target
+                    foreach(GameObject target in _tc.GetTargets())
+                    {
+                        Vector3 targetDirection = target.transform.position - transform.position;
+                        IProjectile projectileInterface = SpawnProjectile(targetDirection, damage - damage * _tc.damageDebuff);
+                        projectileInterface.SetTarget(target);
+                    }
+                }
+                else 
+                {
+                    // spawn the projectile with a normalized direction
+                    SpawnProjectile(aimDirection, damage);
+                    
+                }
 
                 // enact recoil after firing
                 Vector3 recoilDirection = aimDirection.normalized * -1;
