@@ -8,6 +8,15 @@ public class PartBehavior : MonoBehaviour
     public delegate void OnCollect(PartScriptableObject newPart);
     public static OnCollect onCollect;
 
+    void Start()
+    {
+        if (part.pickupImage != null)
+        {
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = part.pickupImage;
+        }
+    }
+
 
     void OnCollisionEnter2D(Collision2D other) 
     { 

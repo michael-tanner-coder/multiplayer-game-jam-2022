@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PartType {MOBILITY, WEAPON, TARGETING};
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/PartScriptableObject", order = 1)]
 public class PartScriptableObject : ScriptableObject
 {
-    [Header("Part Type")]
+    [Header("General")]
     public string name;
     public PartType type;
+    public Sprite pickupImage;
+    public Sprite inUseImage;
 
     [Header("Movement")]
     public float acceleration;
