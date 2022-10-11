@@ -249,6 +249,9 @@ public class Player : MonoBehaviour
     {
       targetingObject.GetComponent<SpriteRenderer>().sprite = _parts.targetingSlot.inUseImage;
     }
+
+    // used in case any parts have full sprite sheet to use instead of a single sprite 
+    UpdatePartSpriteSheet(0);
   }
 
   void UpdatePartSpriteSheet(int index) 
