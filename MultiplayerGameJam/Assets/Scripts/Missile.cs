@@ -12,12 +12,21 @@ public class Missile : MonoBehaviour, IProjectile
     
     public void Init()
     {
-        GetComponent<Rigidbody2D>().velocity = _direction * _speed;
+      GetComponent<Rigidbody2D>().velocity = _direction * _speed;
+      SetRotation();
     }
 
     public void SetDirection(Vector3 direction)
     {
-        _direction = direction.normalized;
+      _direction = direction.normalized;
+    }
+
+    public void SetRotation()
+    {
+      Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+      Vector3 dir = Input.mousePosition - pos;
+      float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+      transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     public void SetDamage(float damage) 

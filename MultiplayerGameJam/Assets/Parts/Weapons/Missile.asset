@@ -15,7 +15,7 @@ MonoBehaviour:
   name: 
   type: 1
   pickupImage: {fileID: 21300000, guid: 4d4de35aec8ecc84c89471f0e1099368, type: 3}
-  inUseImage: {fileID: 0}
+  inUseImage: {fileID: 21300000, guid: b83fe1503241d43468f874ac0817c6fc, type: 3}
   spriteSheet: []
   acceleration: 0
   braking: 0
