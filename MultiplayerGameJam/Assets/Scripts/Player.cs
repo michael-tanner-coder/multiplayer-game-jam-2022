@@ -36,16 +36,8 @@ public class Player : MonoBehaviour
   private Rigidbody2D _rb;
 
   [Header("Rendering")]
+  public Sprite[] sprites;
   private SpriteRenderer _renderer;
-  SpriteRenderer renderer
-  {
-    get
-    {
-      if(_renderer==null)
-        _renderer = GetComponentInChildren<SpriteRenderer>();
-      return _renderer;
-    }
-  }
 
   private void Awake()
   {
@@ -55,6 +47,7 @@ public class Player : MonoBehaviour
     _rb = GetComponent<Rigidbody2D>();
     _parts = GetComponent<PartSlots>();
     _health = GetComponent<Health>();
+    _renderer = GetComponent<SpriteRenderer>();
     _forward = transform.forward;
   }
 
@@ -65,6 +58,7 @@ public class Player : MonoBehaviour
     PartSlots.onPartChange += OnPartChange;
     TargetRange.foundTarget += FoundTarget;
     Health.onHealthGone += OnHealthGone;
+    _renderer.sprite = sprites[0];
 
     if (_parts.weaponSlot) 
     {
@@ -165,24 +159,28 @@ public class Player : MonoBehaviour
         {
             data.direction += Vector3.up;
             data.previousDirection = Vector3.up;
+            _renderer.sprite = sprites[1];
         }
 
         if (Input.GetKey(KeyCode.S)) 
         {
             data.direction += Vector3.down;
             data.previousDirection = Vector3.down;
+            _renderer.sprite = sprites[0];
         }
 
         if (Input.GetKey(KeyCode.A)) 
         {
             data.direction += Vector3.left;
             data.previousDirection = Vector3.left;
+            _renderer.sprite = sprites[2];
         }
 
         if (Input.GetKey(KeyCode.D)) 
         {
             data.direction += Vector3.right;
             data.previousDirection = Vector3.right;
+            _renderer.sprite = sprites[3];
         }
 
         if (Input.GetButtonDown("Mobility"))
