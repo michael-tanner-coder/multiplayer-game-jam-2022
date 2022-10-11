@@ -12,6 +12,7 @@ public class PartScriptableObject : ScriptableObject
     public PartType type;
     public Sprite pickupImage;
     public Sprite inUseImage;
+    public Sprite[] spriteSheet;
 
     [Header("Movement")]
     public float acceleration;

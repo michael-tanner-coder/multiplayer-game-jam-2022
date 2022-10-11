@@ -16,6 +16,7 @@ MonoBehaviour:
   type: 0
   pickupImage: {fileID: 21300000, guid: 8e5a6a54b2126204f84db54d9c3d5109, type: 3}
   inUseImage: {fileID: 21300000, guid: 8e5a6a54b2126204f84db54d9c3d5109, type: 3}
+  spriteSheet: []
   acceleration: 50
   braking: 60
   maxSpeed: 100

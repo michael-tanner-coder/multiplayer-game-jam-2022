@@ -167,6 +167,7 @@ public class Player : MonoBehaviour
             data.direction += Vector3.up;
             data.previousDirection = Vector3.up;
             _renderer.sprite = sprites[1];
+            UpdatePartSpriteSheet(1);
         }
 
         if (Input.GetKey(KeyCode.S)) 
@@ -174,6 +175,7 @@ public class Player : MonoBehaviour
             data.direction += Vector3.down;
             data.previousDirection = Vector3.down;
             _renderer.sprite = sprites[0];
+            UpdatePartSpriteSheet(0);
         }
 
         if (Input.GetKey(KeyCode.A)) 
@@ -181,6 +183,7 @@ public class Player : MonoBehaviour
             data.direction += Vector3.left;
             data.previousDirection = Vector3.left;
             _renderer.sprite = sprites[2];
+            UpdatePartSpriteSheet(2);
         }
 
         if (Input.GetKey(KeyCode.D)) 
@@ -188,6 +191,7 @@ public class Player : MonoBehaviour
             data.direction += Vector3.right;
             data.previousDirection = Vector3.right;
             _renderer.sprite = sprites[3];
+            UpdatePartSpriteSheet(3);
         }
 
         if (Input.GetButtonDown("Mobility"))
@@ -245,6 +249,19 @@ public class Player : MonoBehaviour
     {
       targetingObject.GetComponent<SpriteRenderer>().sprite = _parts.targetingSlot.inUseImage;
     }
+  }
+
+  void UpdatePartSpriteSheet(int index) 
+  {
+    if (_parts.mobilitySlot && _parts.mobilitySlot.spriteSheet.Length > 0)
+    {
+      mobilityObject.GetComponent<SpriteRenderer>().sprite = _parts.mobilitySlot.spriteSheet[index];
+    } 
+
+    if (_parts.targetingSlot && _parts.targetingSlot.spriteSheet.Length > 0)
+    {
+      targetingObject.GetComponent<SpriteRenderer>().sprite = _parts.targetingSlot.spriteSheet[index];
+    } 
   }
 
   void RotateWeapon()
