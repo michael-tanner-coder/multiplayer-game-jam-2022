@@ -38,6 +38,9 @@ public class Player : MonoBehaviour
   [Header("Rendering")]
   public Sprite[] sprites;
   private SpriteRenderer _renderer;
+  [SerializeField] private GameObject weaponObject;
+  [SerializeField] private GameObject mobilityObject;
+  [SerializeField] private GameObject targetingObject;
 
   private void Awake()
   {
@@ -74,6 +77,8 @@ public class Player : MonoBehaviour
     {
       _tc.UpdateTargetingProperties(_parts.targetingSlot);
     }
+
+    UpdatePartSprites();
   }
 
   void Recoil(Vector3 recoilDirection, float recoilAmount) 
@@ -86,6 +91,7 @@ public class Player : MonoBehaviour
     _wc.UpdateWeaponProperties(newPart);
     _mc.UpdateMovementProperties(newPart);
     _tc.UpdateTargetingProperties(newPart);
+    UpdatePartSprites();
   }
 
   void OnHealthGone(GameObject go)
@@ -105,6 +111,7 @@ public class Player : MonoBehaviour
     _wc.UpdateWeaponProperties(_parts.weaponSlot);
     _mc.UpdateMovementProperties(_parts.mobilitySlot);
     _tc.UpdateTargetingProperties(_parts.targetingSlot);
+    UpdatePartSprites();
   }
 
   void FoundTarget(GameObject target) 
@@ -200,6 +207,8 @@ public class Player : MonoBehaviour
             data.buttons |= NetworkInputData.MOUSEBUTTON2;
         }
         _mouseButton1 = false;
+
+        RotateWeapon();
   }
 
   public void FixedUpdate()
@@ -218,5 +227,31 @@ public class Player : MonoBehaviour
 
       if (data.direction.sqrMagnitude > 0)
         _forward = data.direction;
+  }
+
+  void UpdatePartSprites()
+  {
+    if (_parts.weaponSlot)
+    {
+      weaponObject.GetComponent<SpriteRenderer>().sprite = _parts.weaponSlot.inUseImage;
+    }
+
+    if(_parts.mobilitySlot)
+    {
+      mobilityObject.GetComponent<SpriteRenderer>().sprite = _parts.mobilitySlot.inUseImage;
+    }
+
+    if (_parts.targetingSlot)
+    {
+      targetingObject.GetComponent<SpriteRenderer>().sprite = _parts.targetingSlot.inUseImage;
+    }
+  }
+
+  void RotateWeapon()
+  {
+    Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+    Vector3 dir = Input.mousePosition - pos;
+    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    weaponObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
   }
 }
