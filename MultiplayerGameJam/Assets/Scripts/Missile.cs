@@ -56,9 +56,6 @@ public class Missile : MonoBehaviour, IProjectile
 
     void OnCollisionEnter2D(Collision2D other) 
     { 
-      if (other.gameObject.GetComponent<Health>() != null)
-      {
         Explode();
-      }
     }
 }
