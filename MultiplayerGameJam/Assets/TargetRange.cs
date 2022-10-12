@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TargetRange : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class TargetRange : MonoBehaviour
     void Update()
     {
         transform.localScale = new Vector3(range * 2, range * 2, range * 2);
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());;
         Vector2 startPoint = new Vector2(transform.position.x, transform.position.y);
         Vector2 endPoint = mousePosition;
         points[0] = startPoint;

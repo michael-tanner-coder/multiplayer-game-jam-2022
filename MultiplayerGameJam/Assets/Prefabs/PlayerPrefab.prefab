@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3840360129137796769}
   - component: {fileID: 235979019423948757}
   - component: {fileID: 7756785997159724365}
+  - component: {fileID: 7305180348411816078}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d937a0b2716df3541a47f82f8b4bb13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoil: 5
+  recoil: 50
   fireRate: 0
   chargeTime: 0
   damage: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   timeUntilCooldown: 0
   automatic: 0
   _prefabProjectile: {fileID: 2622100364472265910, guid: b90d79199ddb4fe46b742af3be00b0a0, type: 3}
+  aimDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &5137692402333722637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c8284e730dcaf44acf736d23e63f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSlot: {fileID: 0}
+  weaponSlot: {fileID: 11400000, guid: ccb9c64962bbeed45b21bcceec9930eb, type: 2}
   mobilitySlot: {fileID: 0}
   targetingSlot: {fileID: 0}
   _partPrefab: {fileID: 479030093711434456, guid: eeada4dc26ca084499b7fa7bd071f1bb, type: 3}
@@ -252,6 +254,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7305180348411816078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374504374255858968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 96ec32a6adb413346a2bad40a642b5f2, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -6066348748694930396}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: onMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1efb0b44-3c6d-4716-8f3c-4dcc933fdfbc
+    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7096214582548496688}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 87691f1a-0362-497e-9ebf-2c0a6164eede
+    m_ActionName: Player/Shoot[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7096214582548496688}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: Aim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: be3c3793-0652-43d7-8f47-7c9760a39b5d
+    m_ActionName: Player/Aim[/DualSenseGamepadHID/rightStick,/Mouse/position]
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &3583153114546983305
 GameObject:
   m_ObjectHideFlags: 0

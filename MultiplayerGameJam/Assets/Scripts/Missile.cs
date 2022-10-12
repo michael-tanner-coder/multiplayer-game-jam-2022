@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Missile : MonoBehaviour, IProjectile
 {
@@ -24,7 +25,9 @@ public class Missile : MonoBehaviour, IProjectile
     public void SetRotation()
     {
       Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
-      Vector3 dir = Input.mousePosition - pos;
+      Vector2 mousePos = Mouse.current.position.ReadValue();
+      Vector3 aimDir = new Vector3(mousePos.x, mousePos.y, 0f);
+      Vector3 dir = aimDir - pos;
       float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
       transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }

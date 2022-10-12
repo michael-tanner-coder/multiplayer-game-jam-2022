@@ -2,6 +2,7 @@ using Fusion;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
   [Header("Movement")]
   private MovementController _mc;
   private Vector3 _forward;
+  private Vector3 _direction;
   private Vector3 _prevDirection;
   private Timer boostChargeTime = new Timer();
   private Timer boostTime = new Timer();
@@ -149,11 +151,6 @@ public class Player : MonoBehaviour
       }
   }
 
-  private void OnShoot(Vector3 direction) 
-  {
-    _rb.AddForce(direction);
-  }
-
   void Update() 
   {
         delay.Update();
@@ -162,55 +159,22 @@ public class Player : MonoBehaviour
 
         data = new NetworkInputData();
 
-        if (Input.GetKey(KeyCode.W)) 
-        {
-            data.direction += Vector3.up;
-            data.previousDirection = Vector3.up;
-            _renderer.sprite = sprites[1];
-            UpdatePartSpriteSheet(1);
-        }
+        // if (Input.GetButtonDown("Mobility"))
+        // {
+        //     data.activatedMobilityPart = true;
+        // }
 
-        if (Input.GetKey(KeyCode.S)) 
-        {
-            data.direction += Vector3.down;
-            data.previousDirection = Vector3.down;
-            _renderer.sprite = sprites[0];
-            UpdatePartSpriteSheet(0);
-        }
+        // if (Input.GetMouseButtonDown(0)) {
+        //     data.buttons |= NetworkInputData.MOUSEBUTTON1;
+        //     data.mousePos = Input.mousePosition;
+        // }
+        // _mouseButton0 = false;
 
-        if (Input.GetKey(KeyCode.A)) 
-        {
-            data.direction += Vector3.left;
-            data.previousDirection = Vector3.left;
-            _renderer.sprite = sprites[2];
-            UpdatePartSpriteSheet(2);
-        }
-
-        if (Input.GetKey(KeyCode.D)) 
-        {
-            data.direction += Vector3.right;
-            data.previousDirection = Vector3.right;
-            _renderer.sprite = sprites[3];
-            UpdatePartSpriteSheet(3);
-        }
-
-        if (Input.GetButtonDown("Mobility"))
-        {
-            Debug.Log("Pressed Boost");
-            data.activatedMobilityPart = true;
-        }
-
-        if (Input.GetMouseButtonDown(0)) {
-            data.buttons |= NetworkInputData.MOUSEBUTTON1;
-            data.mousePos = Input.mousePosition;
-        }
-        _mouseButton0 = false;
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            data.buttons |= NetworkInputData.MOUSEBUTTON2;
-        }
-        _mouseButton1 = false;
+        // if (Input.GetMouseButtonDown(1))
+        // {
+        //     data.buttons |= NetworkInputData.MOUSEBUTTON2;
+        // }
+        // _mouseButton1 = false;
 
         RotateWeapon();
   }
@@ -227,7 +191,7 @@ public class Player : MonoBehaviour
       // boost powerup
       CheckForBoost(data);
 
-      _mc.Move(data.direction);
+      _mc.Move(_direction.normalized);
 
       if (data.direction.sqrMagnitude > 0)
         _forward = data.direction;
@@ -270,8 +234,50 @@ public class Player : MonoBehaviour
   void RotateWeapon()
   {
     Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
-    Vector3 dir = Input.mousePosition - pos;
+    Vector2 mousePos = Mouse.current.position.ReadValue();
+    Vector3 aimDir = new Vector3(mousePos.x, mousePos.y, 0f);
+    Vector3 dir = aimDir - pos;
     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     weaponObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+  }
+
+  public void OnShoot(InputAction.CallbackContext context) 
+  {
+    // _rb.AddForce(direction);
+    _wc.Shoot(context);
+    Debug.Log("Shoot called");
+
+  }
+
+  public void onMove(InputAction.CallbackContext context)
+  {
+    Vector2 newDirection = context.ReadValue<Vector2>();
+    _prevDirection = new Vector3(_direction.x,_direction.y,_direction.z);
+    _direction = new Vector3(newDirection.x, newDirection.y, 0f);
+
+    if (_direction.Equals(Vector3.up)) 
+    {
+        _renderer.sprite = sprites[1];
+        UpdatePartSpriteSheet(1);
+    }
+
+    if (_direction.Equals(Vector3.down)) 
+    {
+        _renderer.sprite = sprites[0];
+        UpdatePartSpriteSheet(0);
+    }
+
+    if (_direction.Equals(Vector3.left)) 
+    {
+        _renderer.sprite = sprites[2];
+        UpdatePartSpriteSheet(2);
+    }
+
+    if (_direction.Equals(Vector3.right)) 
+    {
+        _renderer.sprite = sprites[3];
+        UpdatePartSpriteSheet(3);
+    }
+
   }
 }

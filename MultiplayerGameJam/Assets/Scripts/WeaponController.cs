@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class WeaponController : MonoBehaviour
 {
@@ -20,6 +22,9 @@ public class WeaponController : MonoBehaviour
     private Timer timeBetweenShots = new Timer();
     private Timer cooldown = new Timer();
 
+    [Header("Aiming")]
+    public Vector3 aimDirection;
+
     // Events
     public delegate void OnShoot(Vector3 recoilDirection, float recoilAmount);
     public delegate void OnShootAttempt();
@@ -28,6 +33,19 @@ public class WeaponController : MonoBehaviour
 
     // Controller communication
     private TargetingController _tc;
+    private InputAction leftMouseClick;
+
+    void Awake()
+    {
+        // leftMouseClick = new InputAction(binding: "<Mouse>/leftButton", interactions: "press;hold");
+        // leftMouseClick.performed += ctx => Shoot(ctx);
+        // leftMouseClick.Enable();
+    }
+
+    private void LeftMouseClicked() 
+    {
+        print("LeftMouseClicked");
+    }
 
     void Start() 
     {
@@ -52,62 +70,62 @@ public class WeaponController : MonoBehaviour
         cooldown.Update();
         timeBetweenShots.Update();
 
-        // Check for smart bomb activation
-        if (Input.GetMouseButtonDown(1))
-        {
-            onShootAttempt?.Invoke();
-        }
+        // // Check for smart bomb activation
+        // if (Input.GetMouseButtonDown(1))
+        // {
+        //     onShootAttempt?.Invoke();
+        // }
 
-        // Check for fire input
-        if (timeBetweenShots.ExpiredOrNotRunning()) {
-            if ((!automatic && Input.GetMouseButtonDown(0) || (automatic && Input.GetMouseButton(0))))
-            {
-                // don't fire while automatic is cooling down
-                if (automatic && cooldown.isRunning)
-                {
-                    return;
-                }
+        // // Check for fire input
+        // if (timeBetweenShots.ExpiredOrNotRunning()) {
+        //     if ((!automatic && Input.GetMouseButtonDown(0) || (automatic && Input.GetMouseButton(0))))
+        //     {
+        //         // don't fire while automatic is cooling down
+        //         if (automatic && cooldown.isRunning)
+        //         {
+        //             return;
+        //         }
                 
-                // get vector for projectile based on current aiming direction
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = transform.position.z;
-                Vector3 aimDirection = mousePosition - transform.position;
+        //         // get vector for projectile based on current aiming direction
+        //         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //         mousePosition.z = transform.position.z;
+        //         Vector3 aimDirection = mousePosition - transform.position;
 
-                // start delay timer to prevent continous shooting
-                timeBetweenShots = Timer.CreateFromSeconds(1/fireRate);
+        //         // start delay timer to prevent continous shooting
+        //         timeBetweenShots = Timer.CreateFromSeconds(1/fireRate);
 
-                if (_tc.GetTargets().Count > 0)
-                {
-                    // foreach target in the tc, spawn a projectile in the direction of the current target
-                    foreach(GameObject target in _tc.GetTargets())
-                    {
-                        Vector3 targetDirection = target.transform.position - transform.position;
-                        IProjectile projectileInterface = SpawnProjectile(targetDirection, damage - damage * _tc.damageDebuff);
-                        projectileInterface.SetTarget(target);
-                    }
-                }
-                else 
-                {
-                    // spawn the projectile with a normalized direction
-                    SpawnProjectile(aimDirection, damage);
+        //         if (_tc.GetTargets().Count > 0)
+        //         {
+        //             // foreach target in the tc, spawn a projectile in the direction of the current target
+        //             foreach(GameObject target in _tc.GetTargets())
+        //             {
+        //                 Vector3 targetDirection = target.transform.position - transform.position;
+        //                 IProjectile projectileInterface = SpawnProjectile(targetDirection, damage - damage * _tc.damageDebuff);
+        //                 projectileInterface.SetTarget(target);
+        //             }
+        //         }
+        //         else 
+        //         {
+        //             // spawn the projectile with a normalized direction
+        //             SpawnProjectile(aimDirection, damage);
                     
-                }
+        //         }
 
-                // enact recoil after firing
-                Vector3 recoilDirection = aimDirection.normalized * -1;
-                onShoot?.Invoke(recoilDirection, recoil);
+        //         // enact recoil after firing
+        //         Vector3 recoilDirection = aimDirection.normalized * -1;
+        //         onShoot?.Invoke(recoilDirection, recoil);
 
-                // count down to cooldown phase for automatic weapons
-                if (automatic) 
-                {
-                    HeatupWeapon();
-                }
-            } 
-            else 
-            {
-                CooldownWeapon();
-            } 
-        }
+        //         // count down to cooldown phase for automatic weapons
+        //         if (automatic) 
+        //         {
+        //             HeatupWeapon();
+        //         }
+        //     } 
+        //     else 
+        //     {
+        //         CooldownWeapon();
+        //     } 
+        // }
     }
 
     void HeatupWeapon() 
@@ -157,5 +175,78 @@ public class WeaponController : MonoBehaviour
             timeUntilCooldown = part.fireTime;
             _prefabProjectile = part.projectile;
         }
+    }
+
+    public void Shoot(InputAction.CallbackContext context)
+    {
+        // Check for fire input
+        if (timeBetweenShots.ExpiredOrNotRunning()) {
+            if ((!automatic && context.interaction is PressInteraction || (automatic && context.interaction is HoldInteraction)))
+            {
+                // don't fire while automatic is cooling down
+                if (automatic && cooldown.isRunning)
+                {
+                    return;
+                }
+                
+                // get vector for projectile based on current aiming direction
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                mousePosition.z = transform.position.z;
+                Vector3 aimDirection = mousePosition - transform.position;
+
+                // start delay timer to prevent continous shooting
+                timeBetweenShots = Timer.CreateFromSeconds(1/fireRate);
+
+                if (_tc.GetTargets().Count > 0)
+                {
+                    // foreach target in the tc, spawn a projectile in the direction of the current target
+                    foreach(GameObject target in _tc.GetTargets())
+                    {
+                        Vector3 targetDirection = target.transform.position - transform.position;
+                        IProjectile projectileInterface = SpawnProjectile(targetDirection, damage - damage * _tc.damageDebuff);
+                        projectileInterface.SetTarget(target);
+                    }
+                }
+                else 
+                {
+                    // spawn the projectile with a normalized direction
+                    SpawnProjectile(aimDirection, damage);
+                    
+                }
+
+                // enact recoil after firing
+                Vector3 recoilDirection = aimDirection.normalized * -1;
+                onShoot?.Invoke(recoilDirection, recoil);
+
+                // count down to cooldown phase for automatic weapons
+                if (automatic) 
+                {
+                    HeatupWeapon();
+                }
+            } 
+            else 
+            {
+                CooldownWeapon();
+            } 
+        }
+    }
+
+    public void Aim(InputAction.CallbackContext context)
+    {
+        // get vector for projectile based on current aiming direction
+        Vector2 positionInput = context.ReadValue<Vector2>();
+        // Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = new Vector3(positionInput.x, positionInput.y, transform.position.z);
+        // mousePosition.z = transform.position.z;
+        Vector3 aimDirection = mousePosition - transform.position;
+    }
+
+    public void ActivateSmartBomb()
+    {
+        // Check for smart bomb activation
+        // if (Input.GetMouseButtonDown(1))
+        // {
+        //     onShootAttempt?.Invoke();
+        // }
     }
 }
