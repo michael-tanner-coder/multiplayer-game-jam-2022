@@ -33,23 +33,12 @@ public class WeaponController : MonoBehaviour
 
     // Controller communication
     private TargetingController _tc;
-    private InputAction leftMouseClick;
-
-    void Awake()
-    {
-        // leftMouseClick = new InputAction(binding: "<Mouse>/leftButton", interactions: "press;hold");
-        // leftMouseClick.performed += ctx => Shoot(ctx);
-        // leftMouseClick.Enable();
-    }
-
-    private void LeftMouseClicked() 
-    {
-        print("LeftMouseClicked");
-    }
+    private PlayerInput _pInput;
 
     void Start() 
     {
         _tc = GetComponent<TargetingController>();
+        _pInput = GetComponent<PlayerInput>();
     }
 
     IProjectile SpawnProjectile(Vector3 projectileDirection, float projectileDamage) 
@@ -190,9 +179,9 @@ public class WeaponController : MonoBehaviour
                 }
                 
                 // get vector for projectile based on current aiming direction
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                mousePosition.z = transform.position.z;
-                Vector3 aimDirection = mousePosition - transform.position;
+                // Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                // mousePosition.z = transform.position.z;
+                // Vector3 aimDirection = mousePosition - transform.position;
 
                 // start delay timer to prevent continous shooting
                 timeBetweenShots = Timer.CreateFromSeconds(1/fireRate);
@@ -231,14 +220,28 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    public Vector3 GetAimDirection()
+    {
+        return aimDirection;
+    }
+
     public void Aim(InputAction.CallbackContext context)
     {
         // get vector for projectile based on current aiming direction
-        Vector2 positionInput = context.ReadValue<Vector2>();
-        // Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 mousePosition = new Vector3(positionInput.x, positionInput.y, transform.position.z);
-        // mousePosition.z = transform.position.z;
-        Vector3 aimDirection = mousePosition - transform.position;
+        Vector2 positionInput = context.ReadValue<Vector2>(); // for gamepad
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(positionInput); // for mouse
+
+        Debug.Log(_pInput.currentControlScheme);
+
+        if (_pInput.currentControlScheme == "Keyboard")
+        {
+            aimDirection = mousePosition.normalized; 
+        }
+
+        if (_pInput.currentControlScheme == "Controller") 
+        {
+            aimDirection = positionInput.normalized; 
+        }
     }
 
     public void ActivateSmartBomb()
