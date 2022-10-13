@@ -241,31 +241,58 @@ public class Player : MonoBehaviour
 
   }
 
+ 
+ Vector3 ClosestDirection(Vector3 v) 
+ {
+    Vector3[] compass = new Vector3[6] {Vector3.left, Vector3.right, Vector3.forward, Vector3.back, Vector3.up, Vector3.down};
+    var maxDot = -Mathf.Infinity;
+    var ret = Vector3.zero;
+     
+     foreach(Vector3 dir in compass) 
+     { 
+        var t = Vector3.Dot(v, dir);
+        if (t > maxDot) 
+        {
+          ret = dir;
+          maxDot = t;
+        }
+     }
+ 
+     return ret;
+ }
+
   public void onMove(InputAction.CallbackContext context)
   {
     Vector2 newDirection = context.ReadValue<Vector2>();
     _prevDirection = new Vector3(_direction.x,_direction.y,_direction.z);
     _direction = new Vector3(newDirection.x, newDirection.y, 0f);
 
-    if (_direction.Equals(Vector3.up)) 
+    if (_direction.Equals(Vector3.zero)) return;
+
+    // 0 = down
+    // 1 = up
+    // 2 = left
+    // 3 = right
+
+    if (ClosestDirection(_direction).Equals(Vector3.up)) 
     {
         _renderer.sprite = sprites[1];
         UpdatePartSpriteSheet(1);
     }
 
-    if (_direction.Equals(Vector3.down)) 
+    if (ClosestDirection(_direction).Equals(Vector3.down)) 
     {
         _renderer.sprite = sprites[0];
         UpdatePartSpriteSheet(0);
     }
 
-    if (_direction.Equals(Vector3.left)) 
+    if (ClosestDirection(_direction).Equals(Vector3.left)) 
     {
         _renderer.sprite = sprites[2];
         UpdatePartSpriteSheet(2);
     }
 
-    if (_direction.Equals(Vector3.right)) 
+    if (ClosestDirection(_direction).Equals(Vector3.right)) 
     {
         _renderer.sprite = sprites[3];
         UpdatePartSpriteSheet(3);
