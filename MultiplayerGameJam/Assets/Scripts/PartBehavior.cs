@@ -5,7 +5,7 @@ using UnityEngine;
 public class PartBehavior : MonoBehaviour
 {
     public PartScriptableObject part;
-    public delegate void OnCollect(PartScriptableObject newPart);
+    public delegate void OnCollect(PartScriptableObject newPart, GameObject collector);
     public static OnCollect onCollect;
 
     void Start()
@@ -26,7 +26,7 @@ public class PartBehavior : MonoBehaviour
             if (slots) 
             {
                 slots.SetSlot(part);
-                onCollect?.Invoke(part);
+                onCollect?.Invoke(part, other.gameObject);
             }
             
             Destroy(gameObject);

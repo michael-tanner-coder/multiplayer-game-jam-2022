@@ -8,4 +8,5 @@ public interface IProjectile
     void SetDirection(Vector3 direction) {}
     void SetDamage(float damage) {}
     void SetTarget(GameObject target) {}
+    void SetOwner(GameObject newOwner) {}
 }

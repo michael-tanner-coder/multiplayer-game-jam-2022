@@ -13,7 +13,7 @@ public class PartSlots : MonoBehaviour
 
     [SerializeField] private GameObject _partPrefab;
 
-    public delegate void OnPartChange();
+    public delegate void OnPartChange(GameObject robot);
     public static OnPartChange onPartChange;
 
     public void SetSlot(PartScriptableObject newPart)
@@ -36,7 +36,7 @@ public class PartSlots : MonoBehaviour
             targetingSlot = newPart;
         }
 
-        onPartChange?.Invoke();
+        onPartChange?.Invoke(gameObject);
     }
 
     public void SetAllSlots(Robot robot) 

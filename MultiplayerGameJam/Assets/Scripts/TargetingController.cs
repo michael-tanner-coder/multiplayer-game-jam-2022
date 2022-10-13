@@ -26,8 +26,13 @@ public class TargetingController : MonoBehaviour
         _targetRange.GetComponent<TargetRange>().SetRange(targetRange);
     }
 
-    void AddTarget(GameObject target)  
+    void AddTarget(GameObject target, GameObject self)  
     {
+        if (!self.Equals(gameObject) || self.Equals(target))
+        {
+            return;
+        }
+        
         if (targets.Count < maxTargetCount) 
         {
             targets.Add(target);
@@ -42,8 +47,14 @@ public class TargetingController : MonoBehaviour
         }
     }
 
-    void RemoveTarget(GameObject target) 
+    void RemoveTarget(GameObject target, GameObject self) 
     {
+
+        if (!self.Equals(gameObject) || self.Equals(target))
+        {
+            return;
+        }
+        
         targets.Remove(target);
         potentialTargets.Remove(target);
 
@@ -51,7 +62,7 @@ public class TargetingController : MonoBehaviour
         {
             if (!targets.Contains(potentialTarget))
             {
-                AddTarget(potentialTarget);
+                AddTarget(potentialTarget, gameObject);
             }
         }
     }

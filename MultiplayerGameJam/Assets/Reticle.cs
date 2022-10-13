@@ -11,7 +11,7 @@ public class Reticle : MonoBehaviour
         TargetRange.lostTarget += OnTargetLost;
     }
 
-    void OnTargetLost(GameObject target) 
+    void OnTargetLost(GameObject target, GameObject self) 
     {
         if (target.Equals(_target))
         {

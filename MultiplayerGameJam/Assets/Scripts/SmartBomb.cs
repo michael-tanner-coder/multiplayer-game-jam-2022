@@ -8,6 +8,7 @@ public class SmartBomb : MonoBehaviour, IProjectile
     private float speed = 10f;
     private GameObject _target;
     [SerializeField] private GameObject explosion;
+    private GameObject owner;
     
     public void Awake() 
     {
@@ -17,6 +18,11 @@ public class SmartBomb : MonoBehaviour, IProjectile
     public void Start() 
     {
         WeaponController.onShootAttempt += Explode;
+    }
+
+    public void SetOwner(GameObject newOwner) 
+    {
+      owner = newOwner;
     }
     
     public void Init()
@@ -39,18 +45,26 @@ public class SmartBomb : MonoBehaviour, IProjectile
       _target = target;
     }
 
-    public void Explode() 
+    public void Explode(GameObject shooter) 
     {
-        WeaponController.onShootAttempt -= Explode;
-        Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        Debug.Log("shooter");
+        Debug.Log(shooter);
+        Debug.Log("owner");
+        Debug.Log(owner);
+
+        if (shooter.Equals(owner))
+        {
+          WeaponController.onShootAttempt -= Explode;
+          Instantiate(explosion, transform.position, Quaternion.identity);
+          Destroy(gameObject);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other) 
     { 
       if (other.gameObject.GetComponent<IProjectile>() != null|| other.gameObject.GetComponent<Health>() != null) 
       {
-        Explode();
+        Explode(gameObject);
       }
     }
 }

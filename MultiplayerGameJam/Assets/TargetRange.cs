@@ -10,10 +10,10 @@ public class TargetRange : MonoBehaviour
     private Vector2[] points = new Vector2[2];
     [SerializeField] private float range = 1.5f;
 
-    public delegate void FoundTarget(GameObject target);
+    public delegate void FoundTarget(GameObject target, GameObject self);
     public static FoundTarget foundTarget;
 
-    public delegate void LostTarget(GameObject target);
+    public delegate void LostTarget(GameObject target, GameObject self);
     public static LostTarget lostTarget;
     
     void Start()
@@ -46,7 +46,7 @@ public class TargetRange : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") 
         {
-            foundTarget?.Invoke(other.gameObject);
+            foundTarget?.Invoke(other.gameObject, gameObject.transform.parent.gameObject);
         }
     }
 
@@ -54,7 +54,7 @@ public class TargetRange : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") 
         {
-            lostTarget?.Invoke(other.gameObject);
+            lostTarget?.Invoke(other.gameObject, gameObject.transform.parent.gameObject);
         }
     }
 }

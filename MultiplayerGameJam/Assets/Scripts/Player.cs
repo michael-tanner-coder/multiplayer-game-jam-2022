@@ -83,17 +83,23 @@ public class Player : MonoBehaviour
     UpdatePartSprites();
   }
 
-  void Recoil(Vector3 recoilDirection, float recoilAmount) 
+  void Recoil(Vector3 recoilDirection, float recoilAmount, GameObject shooter) 
   {
-    _rb.AddForce(recoilDirection * recoilAmount);
+    if (shooter.Equals(gameObject)) 
+    {
+      _rb.AddForce(recoilDirection * recoilAmount);
+    }
   }
 
-  void Collect(PartScriptableObject newPart) 
+  void Collect(PartScriptableObject newPart, GameObject collector) 
   {
-    _wc.UpdateWeaponProperties(newPart);
-    _mc.UpdateMovementProperties(newPart);
-    _tc.UpdateTargetingProperties(newPart);
-    UpdatePartSprites();
+    if (collector.Equals(gameObject)) 
+    {
+      _wc.UpdateWeaponProperties(newPart);
+      _mc.UpdateMovementProperties(newPart);
+      _tc.UpdateTargetingProperties(newPart);
+      UpdatePartSprites();
+    }
   }
 
   void OnHealthGone(GameObject go)
@@ -108,18 +114,24 @@ public class Player : MonoBehaviour
     }
   }
 
-  void OnPartChange() 
+  void OnPartChange(GameObject robot) 
   {
-    _wc.UpdateWeaponProperties(_parts.weaponSlot);
-    _mc.UpdateMovementProperties(_parts.mobilitySlot);
-    _tc.UpdateTargetingProperties(_parts.targetingSlot);
-    UpdatePartSprites();
+    if (robot.Equals(gameObject))
+    {
+      _wc.UpdateWeaponProperties(_parts.weaponSlot);
+      _mc.UpdateMovementProperties(_parts.mobilitySlot);
+      _tc.UpdateTargetingProperties(_parts.targetingSlot);
+      UpdatePartSprites();
+    }
   }
 
-  void FoundTarget(GameObject target) 
+  void FoundTarget(GameObject target, GameObject self) 
   {
-    Debug.Log("FoundTarget");
-    Debug.Log(target);
+    if (self.Equals(gameObject))
+    {
+      Debug.Log("FoundTarget");
+      Debug.Log(target);
+    }
   }
 
   private void CheckForBoost(NetworkInputData data)
@@ -158,23 +170,6 @@ public class Player : MonoBehaviour
         boostTime.Update();
 
         data = new NetworkInputData();
-
-        // if (Input.GetButtonDown("Mobility"))
-        // {
-        //     data.activatedMobilityPart = true;
-        // }
-
-        // if (Input.GetMouseButtonDown(0)) {
-        //     data.buttons |= NetworkInputData.MOUSEBUTTON1;
-        //     data.mousePos = Input.mousePosition;
-        // }
-        // _mouseButton0 = false;
-
-        // if (Input.GetMouseButtonDown(1))
-        // {
-        //     data.buttons |= NetworkInputData.MOUSEBUTTON2;
-        // }
-        // _mouseButton1 = false;
 
         RotateWeapon();
   }
