@@ -20,11 +20,15 @@ public class MenuManager : MonoBehaviour
     public void StartMatch() 
     {
         SceneManager.LoadScene("Arena");
+        SoundManager.instance.StopAll();
+        SoundManager.instance.Play("Battle Song");
     }
 
     public void WinMatch() 
     {
         SceneManager.LoadScene("VictoryScreen");
+        SoundManager.instance.StopAll();
+        SoundManager.instance.Play("Victory Song");
     }
 
     public void LoseMatch() 
@@ -40,6 +44,7 @@ public class MenuManager : MonoBehaviour
     public void MainMenu() 
     {
         SceneManager.LoadScene("MainMenu");
+        // SoundManager.instance.Play("Menu Song");
     }
  
     public void Options() 
@@ -64,21 +69,29 @@ public class MenuManager : MonoBehaviour
     public void StartMetalLevel() 
     {
         SceneManager.LoadScene("MetalLevel");
+        SoundManager.instance.StopAll();
+        SoundManager.instance.Play("Battle Song");
     }
 
     public void StartIceLevel() 
     {
         SceneManager.LoadScene("IceLevel");
+        SoundManager.instance.StopAll();
+        SoundManager.instance.Play("Battle Song");
     }
 
     public void StartSandLevel() 
     {
         SceneManager.LoadScene("SandLevel");
+        SoundManager.instance.StopAll();
+        SoundManager.instance.Play("Battle Song");
     }
 
     public void StartGapLevel() 
     {
         SceneManager.LoadScene("GapLevel");
+        SoundManager.instance.StopAll();
+        SoundManager.instance.Play("Battle Song");
     }
 
 }

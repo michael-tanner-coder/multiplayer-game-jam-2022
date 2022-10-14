@@ -12,8 +12,9 @@ public class MatchManager : MonoBehaviour
         {
             Debug.Log("WINNER IS: ");
             Debug.Log(robots[0].name);
+            SoundManager.instance.StopAll();
+            SoundManager.instance.Play("Victory Song");
             SceneManager.LoadScene("VictoryScreen");
-
         }
     }
 }

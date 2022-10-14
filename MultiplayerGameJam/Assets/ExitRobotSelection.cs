@@ -14,6 +14,12 @@ public class ExitRobotSelection : MonoBehaviour
         maxRobotCount = players.Length;
     }
 
+    private void Update() 
+    {
+        Player[] players = FindObjectsOfType<Player>();
+        maxRobotCount = players.Length;
+    }
+
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.gameObject.tag == "Player")

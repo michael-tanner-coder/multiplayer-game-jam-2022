@@ -56,4 +56,12 @@ public class SoundManager : MonoBehaviour
         
         s.source.Stop();
     }
+
+    public void StopAll() 
+    {
+        foreach(Sound s in sounds)
+        {
+            s.source.Stop();
+        }
+    }
 }
