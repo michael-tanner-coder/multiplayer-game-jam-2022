@@ -64,6 +64,26 @@ MonoBehaviour:
   - {fileID: -1174631574, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
   - {fileID: -448801551, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
   - {fileID: 35095093, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  _playerOneSprites:
+  - {fileID: -266883778, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: -1174631574, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: -448801551, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: 35095093, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  _playerTwoSprites:
+  - {fileID: 755889288, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: 860951157, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: 1011965436, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: -1803060262, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  _playerThreeSprites:
+  - {fileID: 1213757313, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: 1425484370, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: -1479425530, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: -1835210972, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  _playerFourSprites:
+  - {fileID: -1528254570, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: 443686907, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: 1303734038, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
+  - {fileID: 1107399755, guid: 3eb569d2dbc46c34381b1011a10526b8, type: 3}
   weaponObject: {fileID: 3583153114546983305}
   mobilityObject: {fileID: 7944479118938726576}
   targetingObject: {fileID: 8920896097468276451}

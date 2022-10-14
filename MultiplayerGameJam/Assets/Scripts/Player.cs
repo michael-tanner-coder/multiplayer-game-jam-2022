@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -40,6 +41,11 @@ public class Player : MonoBehaviour
   [Header("Rendering")]
   public Sprite[] sprites;
   private SpriteRenderer _renderer;
+  [SerializeField] private Sprite[] _playerOneSprites;
+  [SerializeField] private Sprite[] _playerTwoSprites;
+  [SerializeField] private Sprite[] _playerThreeSprites;
+  [SerializeField] private Sprite[] _playerFourSprites;
+  private List<Sprite[]> _playerSprites = new List<Sprite[]>();
   [SerializeField] private GameObject weaponObject;
   [SerializeField] private GameObject mobilityObject;
   [SerializeField] private GameObject targetingObject;
@@ -54,6 +60,10 @@ public class Player : MonoBehaviour
     _health = GetComponent<Health>();
     _renderer = GetComponent<SpriteRenderer>();
     _forward = transform.forward;
+    _playerSprites.Add(_playerOneSprites);
+    _playerSprites.Add(_playerTwoSprites);
+    _playerSprites.Add(_playerThreeSprites);
+    _playerSprites.Add(_playerFourSprites);
   }
 
   void Start() 
@@ -63,7 +73,16 @@ public class Player : MonoBehaviour
     PartSlots.onPartChange += OnPartChange;
     TargetRange.foundTarget += FoundTarget;
     Health.onHealthGone += OnHealthGone;
+
+    // check number of players to determine your robot color
+    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+    if(players.Length > 0 && players.Length < 4)
+    {
+      sprites = _playerSprites[players.Length - 1];
+    }
+ 
     _renderer.sprite = sprites[0];
+
 
     if (_parts.weaponSlot) 
     {
