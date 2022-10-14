@@ -30,7 +30,7 @@ MonoBehaviour:
   recoil: 100
   automatic: 0
   chargeTime: 10
-  damage: 0
+  damage: 10
   cooldownTime: 0
   fireTime: 0
   projectile: {fileID: 751180106277447643, guid: a6b217606fbb7014c9b7b54d7935f5fc, type: 3}

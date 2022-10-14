@@ -319,4 +319,10 @@ public class Player : MonoBehaviour
     }
 
   }
+
+  public void onPlayerJoined(PlayerInput player)
+  {
+    Debug.Log("player joined");
+    PlayerData.instance.OnPlayerJoin(player);
+  }
 }

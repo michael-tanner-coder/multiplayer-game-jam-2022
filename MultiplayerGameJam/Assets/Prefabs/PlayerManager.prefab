@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 749400480491996970}
   - component: {fileID: 749400480491996971}
+  - component: {fileID: 7809064338467208184}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -50,7 +51,20 @@ MonoBehaviour:
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -6066348748694930396, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: onPlayerJoined
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7305180348411816078, guid: 1eed39fe63868504a866da61c63ed0e4, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -76,3 +90,16 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &7809064338467208184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749400480491996968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34292a1092828f40ae432a8cf1ac0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robots: []
