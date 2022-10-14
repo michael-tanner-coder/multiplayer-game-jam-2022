@@ -9,6 +9,7 @@ public class Reticle : MonoBehaviour
     void Start() 
     {
         TargetRange.lostTarget += OnTargetLost;
+        SoundManager.instance.Play("Target");
     }
 
     void OnTargetLost(GameObject target, GameObject self) 

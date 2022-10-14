@@ -12,6 +12,7 @@ public class RobotType : MonoBehaviour
         {
             PartSlots slots = other.gameObject.GetComponent<PartSlots>();
             slots.SetAllSlots(robot);
+            SoundManager.instance.Play("Collect");
         }
     }
 }

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
   private Vector3 _prevDirection;
   private Timer boostChargeTime = new Timer();
   private Timer boostTime = new Timer();
+  private bool activatedMobilityPart = false;
 
   [Header("Targeting")]
   private TargetingController _tc;
@@ -82,7 +83,6 @@ public class Player : MonoBehaviour
     }
  
     _renderer.sprite = sprites[0];
-
 
     if (_parts.weaponSlot) 
     {
@@ -156,10 +156,11 @@ public class Player : MonoBehaviour
   private void CheckForBoost(NetworkInputData data)
   {
       // only activate the boost if the player has a part with this ability and if it has been recharged or unused
-      if (data.activatedMobilityPart && _parts.mobilitySlot && _parts.mobilitySlot.hasBoost && boostChargeTime.ExpiredOrNotRunning())  
+      if (activatedMobilityPart && _parts.mobilitySlot && _parts.mobilitySlot.hasBoost && boostChargeTime.ExpiredOrNotRunning())  
       {
           boostChargeTime = Timer.CreateFromSeconds(_parts.mobilitySlot.boostRechargeTime + 0.5f);
           boostTime = Timer.CreateFromSeconds(0.5f);
+          SoundManager.instance.Play("Boost");
       }
 
       // increase acceleration and top speed for duration of boost

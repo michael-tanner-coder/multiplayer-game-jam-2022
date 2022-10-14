@@ -11,6 +11,11 @@ public class Explosion : MonoBehaviour
     private float explosionDuration = 1f;
     private float explosionDamage = 10f;
 
+    void Start()
+    {
+      SoundManager.instance.Play("Explosion");
+    }
+
     void Update() 
     {
         if (timeElapsed < explosionDuration)

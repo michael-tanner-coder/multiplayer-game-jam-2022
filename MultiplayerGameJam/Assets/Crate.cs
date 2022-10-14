@@ -17,5 +17,7 @@ public class Crate : MonoBehaviour, IDestructible
         partBehavior.part = _potentialDrops[randomIndex];
         
         Destroy(gameObject);
+        
+        SoundManager.instance.Play("Explosion");
     }
 }

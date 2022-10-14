@@ -28,6 +28,12 @@ public class SmartBomb : MonoBehaviour, IProjectile
     public void Init()
     {
         Debug.Log("SPAWNED SMART BOMB");
+        PlaySound();
+    }
+
+    void PlaySound() 
+    {
+      SoundManager.instance.Play("Shoot");
     }
 
     public void SetDirection(Vector3 direction)

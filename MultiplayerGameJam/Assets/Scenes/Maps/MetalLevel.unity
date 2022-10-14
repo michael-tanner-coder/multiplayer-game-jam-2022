@@ -188,15 +188,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1182192938359982941, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1182192938359982941, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
       propertyPath: sounds.Array.data[1].volume
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1182192938359982941, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
       propertyPath: sounds.Array.data[2].volume
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5104169bd445fd74980f5069a31dba26, type: 3}
@@ -214,7 +214,7 @@ PrefabInstance:
     - target: {fileID: 479030093711434457, guid: eeada4dc26ca084499b7fa7bd071f1bb, type: 3}
       propertyPath: part
       value: 
-      objectReference: {fileID: 11400000, guid: 31c91af6755e94041a51b05afe6f6523, type: 2}
+      objectReference: {fileID: 11400000, guid: ae9c847d8f3e6f44da1cd49b72cfa0d3, type: 2}
     - target: {fileID: 479030093711434460, guid: eeada4dc26ca084499b7fa7bd071f1bb, type: 3}
       propertyPath: m_RootOrder
       value: 1

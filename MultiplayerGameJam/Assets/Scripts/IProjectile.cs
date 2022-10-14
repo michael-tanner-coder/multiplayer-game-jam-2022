@@ -9,4 +9,5 @@ public interface IProjectile
     void SetDamage(float damage) {}
     void SetTarget(GameObject target) {}
     void SetOwner(GameObject newOwner) {}
+    void PlaySound() {}
 }

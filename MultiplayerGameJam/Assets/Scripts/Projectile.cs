@@ -31,6 +31,12 @@ public class Projectile : MonoBehaviour, IProjectile
   {
     life = Timer.CreateFromSeconds(5.0f);
     GetComponent<Rigidbody2D>().velocity = _direction * _speed;
+    PlaySound();
+  }
+
+  public void PlaySound() 
+  {
+    SoundManager.instance.Play("Shoot");
   }
 
   public void Update() 

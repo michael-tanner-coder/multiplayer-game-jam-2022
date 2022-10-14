@@ -15,6 +15,12 @@ public class Missile : MonoBehaviour, IProjectile
     {
       GetComponent<Rigidbody2D>().velocity = _direction * _speed;
       SetRotation();
+      PlaySound();
+    }
+
+    void PlaySound() 
+    {
+      SoundManager.instance.Play("Missile");
     }
 
     public void SetDirection(Vector3 direction)

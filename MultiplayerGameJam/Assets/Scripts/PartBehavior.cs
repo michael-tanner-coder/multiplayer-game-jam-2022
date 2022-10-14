@@ -27,6 +27,7 @@ public class PartBehavior : MonoBehaviour
             {
                 slots.SetSlot(part);
                 onCollect?.Invoke(part, other.gameObject);
+                SoundManager.instance.Play("Collect");
             }
             
             Destroy(gameObject);
